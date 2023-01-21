@@ -1,0 +1,8 @@
+.DS_Store
+DerivedData
+
+# macos development
+xcuserdata
+xcshareddata
+
+norr/GoogleService-Info.plist
