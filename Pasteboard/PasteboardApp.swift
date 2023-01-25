@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct PasteboardApp: App {
-    var body: some Scene {
+
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+   var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: .init(worker: appDelegate.worker))
         }
+        .handlesExternalEvents(matching: ["pasteboard"])
     }
 }
