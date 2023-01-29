@@ -8,55 +8,105 @@
 import AppKit
 import Combine
 
-class Worker {
+final class Keeper {
 
-    let history = History()
+    /// Defines the state of current keeper.
+    ///
+    var state: AnyPublisher<State, Never> {
+        stateSubj.eraseToAnyPublisher()
+    }
+
+    let storage: Storage
 
     init(
-        pasteboard: NSPasteboard = .general
+        pasteboard: NSPasteboard = .general,
+        storage: Storage = .inMemory()
     ) {
-        self.pasteboard = pasteboard
         self.listener = ChangeListener(pasteboard: pasteboard)
+        self.pasteboard = pasteboard
+        self.stateSubj = .init(.inactive)
+        self.storage = storage
     }
-    
+
+    /// Initiates start listening pasteboard, stores paste if needed, etc.
+    ///
     func start() {
 
-        defer { listener.startObserving() }
+        defer { stateSubj.send(.active) }
 
-        listenerSubscription = listener.value.sink { [weak history] newItem in
-            history?.store(newItem)
-        }
+        listener.startObserving()
+
+        listenerSubscription = listener.value
+            .sink { [weak self] newPaste in
+                self?.storage.save(newPaste)
+            }
     }
 
-    func use(_ paste: Paste) {
+    /// Stops listening pasteboard
+    ///
+    func stop() {
+
+        defer { stateSubj.send(.inactive) }
+        listener.stopObserving()
+    }
+
+    @objc func paste(_ index: Int) {
+
+        guard let paste = storage.cache().first(where: { $0.id == index }) else {
+            return
+        }
 
         pasteboard.clearContents()
         paste.contents.forEach {
             pasteboard.setData($0.value, forType: $0.type)
         }
     }
-
     // MARK: - Private
 
     private let pasteboard: NSPasteboard
-    private var listenerSubscription: AnyCancellable?
+    private let stateSubj: CurrentValueSubject<State, Never>
+
     private let listener: ChangeListener
+    private var listenerSubscription: AnyCancellable?
 }
 
-class History {
+extension Keeper {
 
-    var value: AnyPublisher<[Paste], Never> {
-        valuePublisher.eraseToAnyPublisher()
+    enum State {
+        case active, inactive
     }
-    var cache = [Paste]()
+}
 
-    func store(_ newItem: Paste) {
+struct Storage {
 
-        cache.append(newItem)
-        valuePublisher.send(cache)
+    enum Update {
+        case insert(Paste)
     }
 
-    // MARK: - Private
+    var update: () -> AnyPublisher<Update, Never>
 
-    private let valuePublisher = PassthroughSubject<[Paste], Never>()
+    var cache: () -> [Paste]
+    var save: (Paste) -> Void
+}
+
+extension Storage {
+
+    static func inMemory() -> Self {
+
+        var cache = Set<Paste>()
+        let updateSubj = PassthroughSubject<Update, Never>()
+
+        return Storage(
+            update: {
+                updateSubj.eraseToAnyPublisher()
+            },
+            cache: {
+                cache.sorted()
+            },
+            save: {
+                cache.insert($0)
+                updateSubj.send(.insert($0))
+            }
+        )
+    }
 }

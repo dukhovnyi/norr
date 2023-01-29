@@ -20,9 +20,9 @@ struct ContentView: View {
                         Text("\(item.id)")
                         Text(item.string.prefix(64))
                     }
-                    .onTapGesture {
-                        viewModel.use(item)
-                    }
+//                    .onTapGesture {
+//                        viewModel.use(item)
+//                    }
                 }
             }
         }
@@ -32,7 +32,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: .init(worker: .init()))
+        ContentView(viewModel: .init())
     }
 }
 
@@ -43,23 +43,23 @@ extension ContentView {
     final class ViewModel: ObservableObject {
 
         @Published var items = [Paste]()
-        let worker: Worker
-
-        init(worker: Worker) {
-
-            self.worker = worker
-            items = worker.history.cache
-            historyCancellable = worker.history.value
-                .sink { [weak self] items in
-                    self?.items = items.sorted(by: { $0.id > $1.id })
-                }
-            worker.start()
-        }
-
-        func use(_ paste: Paste) {
-
-            worker.use(paste)
-        }
+//        let worker: Worker
+//
+//        init(worker: Worker) {
+//
+//            self.worker = worker
+//            items = worker.history.cache
+//            historyCancellable = worker.history.value
+//                .sink { [weak self] items in
+//                    self?.items = items.sorted(by: { $0.id > $1.id })
+//                }
+//            worker.start()
+//        }
+//
+//        func use(_ paste: Paste) {
+//
+//            worker.use(paste)
+//        }
 
         // MARK: - Private
 

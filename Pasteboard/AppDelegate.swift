@@ -6,11 +6,40 @@
 //
 
 import AppKit
-import SwiftUI
+import Combine
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let worker = Worker()
+    let keeper: Keeper
+    var cancellable: AnyCancellable?
+
+    override init() {
+        self.keeper = .init()
+        super.init()
+
+        defer { keeper.start() }
+
+        cancellable = keeper.storage.update()
+            .sink { [weak self] update in
+
+                guard let self else { return }
+
+                switch update {
+                case .insert(let newPaste):
+                    self.statusBarItem?.menu?.items.first(where: { $0.keyEquivalent == "3" })?.keyEquivalent = ""
+                    self.statusBarItem?.menu?.items.first(where: { $0.keyEquivalent == "2" })?.keyEquivalent = "3"
+                    self.statusBarItem?.menu?.items.first(where: { $0.keyEquivalent == "1" })?.keyEquivalent = "2"
+
+                    let menuItem = self.statusBarItem?.menu?.insertItem(
+                        withTitle: newPaste.stringRepresentation,
+                        action: #selector(self.moveToPasteboard),
+                        keyEquivalent: "1",
+                        at: 0
+                    )
+                    menuItem?.tag = newPaste.id
+                }
+            }
+    }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
 
@@ -23,19 +52,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
 
         let menu = NSMenu()
-        menu.addItem(
-            withTitle: "Open application",
-            action: #selector(popup),
-            keyEquivalent: ""
-        )
-        menu.addItem(
-            withTitle: "Quit",
-            action: #selector(quit),
-            keyEquivalent: ""
-        )
+
+        staticMenuItems.forEach {
+            menu.addItem($0)
+        }
 
         statusBarItem?.menu = menu
-        worker.start()
     }
 
     // MARK: - Private
@@ -51,4 +73,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func quit() {
         NSApplication.shared.terminate(self)
     }
+
+    @objc
+    private func moveToPasteboard(sender: NSMenuItem) {
+
+        keeper.paste(sender.tag)
+    }
+
+    lazy var staticMenuItems: [NSMenuItem] = [
+        NSMenuItem.separator(),
+        NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "Q")
+    ]
 }

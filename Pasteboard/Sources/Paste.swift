@@ -7,7 +7,7 @@
 
 import AppKit
 
-struct Paste: Identifiable, CustomStringConvertible {
+struct Paste: Identifiable, Hashable, CustomStringConvertible {
 
     let id: Int
     let contents: [Content]
@@ -32,12 +32,34 @@ struct Paste: Identifiable, CustomStringConvertible {
         Values: \(contents.map { String(data: $0.value ?? Data(), encoding: .utf8) } )
         """
     }
+
+    var stringRepresentation: String {
+
+        if let data = contents.first(where: { $0.type == .string })?.value {
+            return String(decoding: data, as: UTF8.self)
+        }
+
+        if let _ = contents.first(where: { $0.type == .png })?.value {
+            return "png image"
+        }
+
+        let msg = String(decoding: contents.first?.value ?? .init(), as: UTF8.self)
+        assertionFailure("unknown contents='\(msg)'.")
+
+        return msg
+    }
 }
 
 extension Paste {
 
-    struct Content {
+    struct Content: Hashable {
         let type: NSPasteboard.PasteboardType
         let value: Data?
+    }
+}
+
+extension Paste: Comparable {
+    static func < (lhs: Paste, rhs: Paste) -> Bool {
+        lhs.id < rhs.id
     }
 }

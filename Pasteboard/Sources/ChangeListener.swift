@@ -8,7 +8,7 @@
 import AppKit
 import Combine
 
-/// By timer checks the Pasteboard, verify the current item
+/// By timer checks the Pasteboard, verifies the current item
 ///  and send a new value to `value`. Do nothing if the pasteboard
 ///  value has not been changed.
 ///
