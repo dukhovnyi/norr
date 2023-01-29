@@ -1,5 +1,5 @@
 //
-//  Worker.swift
+//  Keeper.swift
 //  Pasteboard
 //
 //  Created by Yurii Dukhovnyi on 22.01.2023.
@@ -10,22 +10,25 @@ import Combine
 
 final class Keeper {
 
+    let preferences: PreferencesManaging
+    let history: HistoryManaging
+
     /// Defines the state of current keeper.
     ///
     var state: AnyPublisher<State, Never> {
         stateSubj.eraseToAnyPublisher()
     }
 
-    let storage: Storage
-
     init(
-        pasteboard: NSPasteboard = .general,
-        storage: Storage = .inMemory()
+        pasteboard: NSPasteboard,
+        preferences: PreferencesManaging,
+        storage: HistoryManaging
     ) {
         self.listener = ChangeListener(pasteboard: pasteboard)
         self.pasteboard = pasteboard
+        self.preferences = preferences
         self.stateSubj = .init(.inactive)
-        self.storage = storage
+        self.history = storage
     }
 
     /// Initiates start listening pasteboard, stores paste if needed, etc.
@@ -38,7 +41,7 @@ final class Keeper {
 
         listenerSubscription = listener.value
             .sink { [weak self] newPaste in
-                self?.storage.save(newPaste)
+                self?.history.save(newPaste)
             }
     }
 
@@ -52,7 +55,7 @@ final class Keeper {
 
     @objc func paste(_ index: Int) {
 
-        guard let paste = storage.cache().first(where: { $0.id == index }) else {
+        guard let paste = history.cache().first(where: { $0.id == index }) else {
             return
         }
 
@@ -74,39 +77,5 @@ extension Keeper {
 
     enum State {
         case active, inactive
-    }
-}
-
-struct Storage {
-
-    enum Update {
-        case insert(Paste)
-    }
-
-    var update: () -> AnyPublisher<Update, Never>
-
-    var cache: () -> [Paste]
-    var save: (Paste) -> Void
-}
-
-extension Storage {
-
-    static func inMemory() -> Self {
-
-        var cache = Set<Paste>()
-        let updateSubj = PassthroughSubject<Update, Never>()
-
-        return Storage(
-            update: {
-                updateSubj.eraseToAnyPublisher()
-            },
-            cache: {
-                cache.sorted()
-            },
-            save: {
-                cache.insert($0)
-                updateSubj.send(.insert($0))
-            }
-        )
     }
 }

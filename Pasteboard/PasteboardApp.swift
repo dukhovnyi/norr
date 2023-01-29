@@ -13,9 +13,13 @@ struct PasteboardApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        WindowGroup {
-            ContentView(viewModel: .init())
+        Settings {
+//        WindowGroup {
+            PreferencesView(viewModel: .init(history: appDelegate.keeper.history, preferences: appDelegate.keeper.preferences))
+                .padding()
+                .fixedSize()
         }
+        .windowResizability(.contentSize)
         .handlesExternalEvents(matching: ["pasteboard"])
     }
 }

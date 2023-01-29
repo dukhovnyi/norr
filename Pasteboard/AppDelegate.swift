@@ -14,12 +14,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var cancellable: AnyCancellable?
 
     override init() {
-        self.keeper = .init()
+        self.keeper = .init(
+            pasteboard: .general,
+            preferences: .live(),
+            storage: .inMemory()
+        )
         super.init()
 
         defer { keeper.start() }
 
-        cancellable = keeper.storage.update()
+        cancellable = keeper.history.update()
             .sink { [weak self] update in
 
                 guard let self else { return }
@@ -37,6 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         at: 0
                     )
                     menuItem?.tag = newPaste.id
+                case .removeAll:
+                    self.statusBarItem?.menu?.items.removeAll { !self.staticMenuItems.contains($0) }
                 }
             }
     }
@@ -80,8 +86,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         keeper.paste(sender.tag)
     }
 
+    @objc
+    private func cleanHistory() {
+
+        keeper.history.clean()
+    }
+
     lazy var staticMenuItems: [NSMenuItem] = [
         NSMenuItem.separator(),
+        NSMenuItem(title: "Clean history", action: #selector(cleanHistory), keyEquivalent: ""),
         NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "Q")
     ]
 }
