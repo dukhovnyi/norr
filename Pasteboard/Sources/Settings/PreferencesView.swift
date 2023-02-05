@@ -70,7 +70,7 @@ struct PreferencesView_Previews: PreviewProvider {
     static var previews: some View {
         PreferencesView(
             viewModel: .init(
-                history: .inMemory(),
+                history: .inMemory(preferencesManaging: .mock()),
                 preferences: .mock()
             )
         )

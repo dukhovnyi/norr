@@ -15,7 +15,7 @@ struct PasteboardApp: App {
     var body: some Scene {
         Settings {
 //        WindowGroup {
-            PreferencesView(viewModel: .init(history: appDelegate.keeper.history, preferences: appDelegate.keeper.preferences))
+            PreferencesView(viewModel: .init(history: appDelegate.keeper.history, preferences: appDelegate.keeper.preferencesManaging))
                 .padding()
                 .fixedSize()
         }

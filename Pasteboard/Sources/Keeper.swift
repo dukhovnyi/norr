@@ -10,7 +10,7 @@ import Combine
 
 final class Keeper {
 
-    let preferences: PreferencesManaging
+    let preferencesManaging: PreferencesManaging
     let history: HistoryManaging
 
     /// Defines the state of current keeper.
@@ -21,12 +21,12 @@ final class Keeper {
 
     init(
         pasteboard: NSPasteboard,
-        preferences: PreferencesManaging,
+        preferencesManaging: PreferencesManaging,
         storage: HistoryManaging
     ) {
-        self.listener = ChangeListener(pasteboard: pasteboard)
+        self.listener = PasteboardChangeListener(pasteboard: pasteboard)
         self.pasteboard = pasteboard
-        self.preferences = preferences
+        self.preferencesManaging = preferencesManaging
         self.stateSubj = .init(.inactive)
         self.history = storage
     }
@@ -59,17 +59,23 @@ final class Keeper {
             return
         }
 
+        use(paste: paste)
+    }
+
+    func use(paste: Paste) {
+
         pasteboard.clearContents()
         paste.contents.forEach {
             pasteboard.setData($0.value, forType: $0.type)
         }
     }
+
     // MARK: - Private
 
     private let pasteboard: NSPasteboard
     private let stateSubj: CurrentValueSubject<State, Never>
 
-    private let listener: ChangeListener
+    private let listener: PasteboardChangeListener
     private var listenerSubscription: AnyCancellable?
 }
 

@@ -12,7 +12,7 @@ import Combine
 ///  and send a new value to `value`. Do nothing if the pasteboard
 ///  value has not been changed.
 ///
-final class ChangeListener {
+final class PasteboardChangeListener {
 
     var value: AnyPublisher<Paste, Never> {
         valuePublisher.eraseToAnyPublisher()

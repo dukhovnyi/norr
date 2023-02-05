@@ -7,7 +7,7 @@
 
 import AppKit
 
-struct Paste: Identifiable, Hashable, CustomStringConvertible {
+struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
 
     let id: Int
     let contents: [Content]
@@ -44,9 +44,9 @@ struct Paste: Identifiable, Hashable, CustomStringConvertible {
         }
 
         let msg = String(decoding: contents.first?.value ?? .init(), as: UTF8.self)
-        assertionFailure("unknown contents='\(msg)'.")
+//        assertionFailure("unknown contents='\(msg)'.")
 
-        return msg
+        return msg.isEmpty ? contents.map { "\($0.type)" }.joined() : msg
     }
 }
 

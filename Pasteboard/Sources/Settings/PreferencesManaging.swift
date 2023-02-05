@@ -8,10 +8,22 @@
 import Combine
 import Foundation
 
+/// Defines mechanisms for cooperation with application configuration
+///  including storing, fetching, etc.
+///
 struct PreferencesManaging {
 
+    /// Gets current preferences.
+    ///
+    var current: () -> Preferences
+
+    /// Publisher that sends preferences as soon as it changed.
+    /// Returns current value imidiately after subscribing.
+    ///
     var preferences: () -> AnyPublisher<Preferences, Never>
 
+    /// Updates preferences and store it.
+    ///
     var update: (Preferences) -> Void
 }
 
@@ -23,6 +35,7 @@ extension PreferencesManaging {
         let value = CurrentValueSubject<Preferences, Never>(pref)
 
         return .init(
+            current: { value.value },
             preferences: { value.eraseToAnyPublisher() },
             update: { newValue in
 
@@ -41,6 +54,7 @@ extension PreferencesManaging {
     ) -> Self {
 
         .init(
+            current: { subj.value },
             preferences: { subj.eraseToAnyPublisher() },
             update: update
         )
