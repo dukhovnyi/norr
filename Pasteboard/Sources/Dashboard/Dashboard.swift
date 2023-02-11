@@ -11,31 +11,58 @@ struct Dashboard: View {
 
     @StateObject var viewModel: ViewModel
 
-    enum FocusField: Hashable { case field }
+    enum FocusField: Hashable { case pasteboardList }
     @FocusState private var focusedField: FocusField?
 
     var body: some View {
         VStack(spacing: 0) {
 
-            ZStack {
-                List(viewModel.items, selection: $viewModel.selected) { item in
+            switch viewModel.content {
 
-                    Row(paste: item)
-                        .onTapGesture {
-                            viewModel.use(paste: item)
+            case .pasteboardList:
+                ZStack {
+                    List(viewModel.items, selection: $viewModel.selected) { item in
+
+                        Row(paste: item)
+                            .onTapGesture {
+                                viewModel.use(paste: item)
+                            }
+                            .tag(item)
+                            .padding()
+                    }
+                    .listStyle(.bordered(alternatesRowBackgrounds: true))
+                    .listItemTint(.primary)
+                    .opacity(viewModel.items.isEmpty ? 0.18 : 1.0)
+                    .disabled(viewModel.state == .inactive)
+                    .focused($focusedField, equals: .pasteboardList)
+                    .blur(radius: viewModel.state == .inactive ? 20 : 0)
+
+
+                    if viewModel.state == .inactive {
+
+                        VStack {
+                            Text("Collecting pasteboard history has been suspended.")
+                            Button(
+                                action: { [weak viewModel] in viewModel?.start() },
+                                label: {
+                                    Text("Resume")
+                                })
                         }
-                        .tag(item)
-                        .padding()
-                }
-                .listStyle(.bordered(alternatesRowBackgrounds: true))
-                .listItemTint(.primary)
-                .opacity(viewModel.items.isEmpty ? 0.18 : 1.0)
-                .focused($focusedField, equals: .field)
 
-                if viewModel.items.isEmpty {
-                    Text("History is empty")
-                        .font(.title3)
+                    } else {
+
+                        if viewModel.items.isEmpty {
+                            Text("Pasteboard history is empty")
+                                .font(.title3)
+                        }
+
+                    }
                 }
+
+            case .preferences:
+                PreferencesView(viewModel: .init(history: .inMemory(preferencesManaging: .live()), preferences: .live()))
+                    .padding()
+                Spacer()
             }
 
             Divider()
@@ -48,6 +75,21 @@ struct Dashboard: View {
                         .font(.footnote)
                 }
                 Spacer()
+
+                VStack {
+                    Button(
+                        action: { [weak viewModel] in viewModel?.stateToggle() },
+                        label: {
+                            VStack {
+                                Image(systemName: viewModel.stateButtoneImageName)
+                                Text(viewModel.stateButtonTitle)
+                            }
+                        }
+                    )
+                }
+
+                Divider()
+
                 Button(
                     action: { viewModel.cleanHistory() },
                     label: {
@@ -60,11 +102,9 @@ struct Dashboard: View {
                 Divider()
 
                 Button(
-                    action: {},
+                    action: viewModel.preferencesClick,
                     label: {
-                        Image(systemName: "gear")
-                            .resizable()
-                            .frame(width: 24, height: 24)
+                        viewModel.preferencesButtonImage
                     }
                 )
                 .padding(8)
@@ -75,7 +115,7 @@ struct Dashboard: View {
             .buttonStyle(.borderless)
         }
         .onAppear {
-            focusedField = .field
+            focusedField = .pasteboardList
             viewModel.onAppear()
         }
         .onDisappear {
@@ -89,7 +129,8 @@ struct ContentView_Previews: PreviewProvider {
         Dashboard(
             viewModel: .init(
                 keeper: .init(pasteboard: .general, preferencesManaging: .mock(), storage: .mock()),
-                onDidPaste: {}
+                onDidPaste: {},
+                state: .active
             )
         )
     }
@@ -103,10 +144,9 @@ extension Dashboard {
         @State var paste: Paste
 
         var body: some View {
-
-            HStack {
-                Text(paste.stringRepresentation.replacingOccurrences(of: "\r\n", with: "􀅇").prefix(128))
-            }
+                HStack {
+                    Text(paste.stringRepresentation.replacingOccurrences(of: "\r\n", with: "􀅇").prefix(128))
+                }
         }
     }
 }

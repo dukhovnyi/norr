@@ -16,16 +16,18 @@ struct PreferencesView: View {
 
         VStack(alignment: .leading, spacing: 32) {
 
-            Text("Settings")
-                .font(.largeTitle)
+            HStack(spacing: 16) {
+                Image(systemName: "gear")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                Text("Preferences")
+                    .font(.largeTitle)
+            }
 
             VStack(alignment: .leading, spacing: 8) {
 
-                Text("History")
-                    .font(.title2)
-
                 Picker(
-                    "Maximum capacity",
+                    "Pasteboard history capacity",
                     selection: $viewModel.prefs.storageCapacity
                 ) {
                     Text("3")
@@ -56,9 +58,6 @@ struct PreferencesView: View {
                     viewModel?.history.clean()
                 }
             }
-
-            Text("\(Bundle.main.name) \(Bundle.main.semver)")
-                .font(.footnote)
         }
         .onChange(of: viewModel.prefs) { [weak viewModel] newValue in
             viewModel?.preferences.update(newValue)
