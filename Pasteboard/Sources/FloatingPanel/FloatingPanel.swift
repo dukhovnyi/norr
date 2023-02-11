@@ -1,92 +1,63 @@
-////
-////  FloatingPanel.swift
-////  Pasteboard
-////
-////  Created by Yurii Dukhovnyi on 05.02.2023.
-////
 //
-//import SwiftUI
+//  FloatingPanel.swift
+//  Pasteboard
 //
-///// An NSPanel subclass that implements floating panel traits.
-//class FloatingPanel<Content: View>: NSPanel {
+//  Created by Yurii Dukhovnyi on 11.02.2023.
 //
-//    @Binding var isPresented: Bool
-//    
-//    init(view: () -> Content,
-//         contentRect: NSRect,
-//         backing: NSWindow.BackingStoreType = .buffered,
-//         defer flag: Bool = false,
-//         isPresented: Binding<Bool>) {
-//        /// Initialize the binding variable by assigning the whole value via an underscore
-//        self._isPresented = isPresented
-//
-//        /// Init the window as usual
-//        super.init(contentRect: contentRect,
-//                   styleMask: [.nonactivatingPanel, .titled, .resizable, .closable, .fullSizeContentView],
-//                   backing: backing,
-//                   defer: flag)
-//
-//        /// Allow the panel to be on top of other windows
-//        isFloatingPanel = true
-//        level = .floating
-//
-//        /// Allow the pannel to be overlaid in a fullscreen space
-//        collectionBehavior.insert(.fullScreenAuxiliary)
-//
-//        /// Don't show a window title, even if it's set
-//        titleVisibility = .hidden
-//        titlebarAppearsTransparent = true
-//
-//        /// Since there is no title bar make the window moveable by dragging on the background
-//        isMovableByWindowBackground = true
-//
-//        /// Hide when unfocused
-//        hidesOnDeactivate = true
-//
-//        /// Hide all traffic light buttons
-//        standardWindowButton(.closeButton)?.isHidden = true
-//        standardWindowButton(.miniaturizeButton)?.isHidden = true
-//        standardWindowButton(.zoomButton)?.isHidden = true
-//
-//        /// Sets animations accordingly
-//        animationBehavior = .utilityWindow
-//
-//        /// Set the content view.
-//        /// The safe area is ignored because the title bar still interferes with the geometry
-//        contentView = NSHostingView(rootView: view()
-//            .ignoresSafeArea()
-//            .environment(\.floatingPanel, self))
-//    }
-//
-//    /// Close automatically when out of focus, e.g. outside click
-//    override func resignMain() {
-//        super.resignMain()
-//        close()
-//    }
-//
-//    /// Close and toggle presentation, so that it matches the current state of the panel
-//    override func close() {
-//        super.close()
-//        isPresented = false
-//    }
-//
-//    /// `canBecomeKey` and `canBecomeMain` are both required so that text inputs inside the panel can receive focus
-//    override var canBecomeKey: Bool {
-//        return true
-//    }
-//
-//    override var canBecomeMain: Bool {
-//        return true
-//    }
-//}
-//
-//private struct FloatingPanelKey: EnvironmentKey {
-//    static let defaultValue: NSPanel? = nil
-//}
-//
-//extension EnvironmentValues {
-//    var floatingPanel: NSPanel? {
-//        get { self[FloatingPanelKey.self] }
-//        set { self[FloatingPanelKey.self] = newValue }
-//    }
-//}
+
+import AppKit
+
+class FloatingPanel: NSPanel {
+    init(contentRect: NSRect, backing: NSWindow.BackingStoreType, defer flag: Bool) {
+
+        // Not sure if .titled does affect anything here. Kept it because I think it might help with accessibility but I did not test that.
+        super.init(contentRect: contentRect, styleMask: [.nonactivatingPanel, .titled, .closable, .fullSizeContentView], backing: backing, defer: flag)
+
+        // Set this if you want the panel to remember its size/position
+        //        self.setFrameAutosaveName("a unique name")
+
+        // Allow the pannel to be on top of almost all other windows
+        self.isFloatingPanel = true
+        self.level = .floating
+
+        // Allow the pannel to appear in a fullscreen space
+        self.collectionBehavior.insert(.fullScreenAuxiliary)
+
+        // While we may set a title for the window, don't show it
+        self.titleVisibility = .hidden
+        self.titlebarAppearsTransparent = true
+
+        // Since there is no titlebar make the window moveable by click-dragging on the background
+        self.isMovableByWindowBackground = true
+
+        // Keep the panel around after closing since I expect the user to open/close it often
+        self.isReleasedWhenClosed = false
+
+        // Activate this if you want the window to hide once it is no longer focused
+        //        self.hidesOnDeactivate = true
+
+        // Hide the traffic icons (standard close, minimize, maximize buttons)
+        self.standardWindowButton(.closeButton)?.isHidden = true
+        self.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        self.standardWindowButton(.zoomButton)?.isHidden = true
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeKeyNotification),
+            name: NSWindow.didBecomeKeyNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didResignKeyNotification),
+            name: NSWindow.didResignKeyNotification,
+            object: nil
+        )
+    }
+
+    // `canBecomeKey` and `canBecomeMain` are required so that text inputs inside the panel can receive focus
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { true }
+    @objc func didBecomeKeyNotification() {}
+    @objc func didResignKeyNotification() { orderOut(nil) }
+}

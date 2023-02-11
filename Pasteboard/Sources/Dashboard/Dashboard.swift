@@ -11,26 +11,26 @@ struct Dashboard: View {
 
     @StateObject var viewModel: ViewModel
 
-    var onDidUsePaste: (() -> Void)?
+    enum FocusField: Hashable { case field }
+    @FocusState private var focusedField: FocusField?
 
     var body: some View {
         VStack(spacing: 0) {
 
             ZStack {
-                List {
-                    ForEach(viewModel.items) { item in
+                List(viewModel.items, selection: $viewModel.selected) { item in
 
-                        Row(paste: item)
-                            .onTapGesture {
-                                onDidUsePaste?()
-                                viewModel.use(paste: item)
-                            }
-                            .padding()
-
-                    }
+                    Row(paste: item)
+                        .onTapGesture {
+                            viewModel.use(paste: item)
+                        }
+                        .tag(item)
+                        .padding()
                 }
                 .listStyle(.bordered(alternatesRowBackgrounds: true))
+                .listItemTint(.primary)
                 .opacity(viewModel.items.isEmpty ? 0.18 : 1.0)
+                .focused($focusedField, equals: .field)
 
                 if viewModel.items.isEmpty {
                     Text("History is empty")
@@ -74,13 +74,23 @@ struct Dashboard: View {
             .frame(height: 50)
             .buttonStyle(.borderless)
         }
+        .onAppear {
+            focusedField = .field
+            viewModel.onAppear()
+        }
+        .onDisappear {
+            viewModel.onDisappear()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard(
-            viewModel: .init(keeper: .init(pasteboard: .general, preferencesManaging: .mock(), storage: .mock()))
+            viewModel: .init(
+                keeper: .init(pasteboard: .general, preferencesManaging: .mock(), storage: .mock()),
+                onDidPaste: {}
+            )
         )
     }
 }

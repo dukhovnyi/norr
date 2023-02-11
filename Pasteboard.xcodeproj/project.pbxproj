@@ -15,10 +15,10 @@
 		751AF4E0298719EB007A3311 /* PreferencesView.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751AF4DF298719EB007A3311 /* PreferencesView.ViewModel.swift */; };
 		751AF4E329871A45007A3311 /* QuickStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751AF4E229871A45007A3311 /* QuickStorage.swift */; };
 		756EA69D2990229200CE2356 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 756EA69C2990229200CE2356 /* HotKey */; };
-		756EA6A02990446D00CE2356 /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA69F2990446D00CE2356 /* FloatingPanel.swift */; };
 		756EA6A32990516900CE2356 /* Dashboard.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */; };
 		756EA6A62990524300CE2356 /* HistoryManaging.InMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A52990524300CE2356 /* HistoryManaging.InMemory.swift */; };
 		756EA6A82990525C00CE2356 /* HistoryManaging.Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A72990525C00CE2356 /* HistoryManaging.Mock.swift */; };
+		758EC8A0299805D7003562EC /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758EC89F299805D7003562EC /* FloatingPanel.swift */; };
 		75B881C1297C1F7400048A2F /* PasteboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C0297C1F7400048A2F /* PasteboardApp.swift */; };
 		75B881C3297C1F7400048A2F /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C2297C1F7400048A2F /* Dashboard.swift */; };
 		75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B881C4297C1F7600048A2F /* Assets.xcassets */; };
@@ -37,10 +37,10 @@
 		751AF4DD298713FC007A3311 /* HistoryManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManaging.swift; sourceTree = "<group>"; };
 		751AF4DF298719EB007A3311 /* PreferencesView.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.ViewModel.swift; sourceTree = "<group>"; };
 		751AF4E229871A45007A3311 /* QuickStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStorage.swift; sourceTree = "<group>"; };
-		756EA69F2990446D00CE2356 /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
 		756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.ViewModel.swift; sourceTree = "<group>"; };
 		756EA6A52990524300CE2356 /* HistoryManaging.InMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManaging.InMemory.swift; sourceTree = "<group>"; };
 		756EA6A72990525C00CE2356 /* HistoryManaging.Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManaging.Mock.swift; sourceTree = "<group>"; };
+		758EC89F299805D7003562EC /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
 		75B881BD297C1F7400048A2F /* Pasteboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pasteboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B881C0297C1F7400048A2F /* PasteboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardApp.swift; sourceTree = "<group>"; };
 		75B881C2297C1F7400048A2F /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		756EA69E2990446100CE2356 /* FloatingPanel */ = {
 			isa = PBXGroup;
 			children = (
-				756EA69F2990446D00CE2356 /* FloatingPanel.swift */,
+				758EC89F299805D7003562EC /* FloatingPanel.swift */,
 			);
 			path = FloatingPanel;
 			sourceTree = "<group>";
@@ -252,7 +252,7 @@
 			files = (
 				75B881D7297DCD6500048A2F /* AppDelegate.swift in Sources */,
 				751AF4E0298719EB007A3311 /* PreferencesView.ViewModel.swift in Sources */,
-				756EA6A02990446D00CE2356 /* FloatingPanel.swift in Sources */,
+				758EC8A0299805D7003562EC /* FloatingPanel.swift in Sources */,
 				751AF4CE2986EFC1007A3311 /* PreferencesView.swift in Sources */,
 				751AF4CC2986EEF1007A3311 /* Preferences.swift in Sources */,
 				751AF4E329871A45007A3311 /* QuickStorage.swift in Sources */,

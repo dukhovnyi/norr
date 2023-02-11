@@ -5,6 +5,7 @@
 //  Created by Yurii Dukhovnyi on 05.02.2023.
 //
 
+import AppKit
 import Combine
 import Foundation
 
@@ -12,12 +13,17 @@ extension Dashboard {
 
     final class ViewModel: ObservableObject {
 
+        @Published var selected: Set<Paste> = []
         @Published var items = [Paste]()
 
+        var onDidPaste: () -> Void
+
         init(
-            keeper: Keeper
+            keeper: Keeper,
+            onDidPaste: @escaping () -> Void
         ) {
             self.keeper = keeper
+            self.onDidPaste = onDidPaste
 
             items = keeper.history.cache()
             updateSubscription = keeper.history.update()
@@ -45,11 +51,34 @@ extension Dashboard {
 
         func use(paste: Paste) {
             keeper.use(paste: paste)
+            onDidPaste()
+        }
+
+        func onAppear() {
+
+            self.eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { [weak self] event in
+
+                guard let self = self, let paste = self.selected.first else { return event }
+
+                if event.keyCode == 36 {
+                    self.use(paste: paste)
+                }
+                return event
+            }
+        }
+
+        func onDisappear() {
+
+            if let eventMonitor {
+                NSEvent.removeMonitor(eventMonitor)
+            }
         }
 
         // MARK: - Private
 
         private let keeper: Keeper
         private var updateSubscription: AnyCancellable?
+
+        private var eventMonitor: Any?
     }
 }
