@@ -55,7 +55,7 @@ extension Dashboard {
                 }
 
             self.stateSubscriptions = keeper.state
-                .throttle(for: .seconds(3), scheduler: DispatchQueue.main, latest: true)
+                .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: true)
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { [weak self] newState in
                     self?.state = newState
@@ -118,6 +118,12 @@ extension Dashboard {
                     .resizable()
                     .frame(width: 12, height: 24)
             }
+        }
+
+        func preferencesViewModel() -> PreferencesView.ViewModel {
+            PreferencesView.ViewModel(
+                preferences: keeper.preferencesManaging
+            )
         }
 
         // MARK: - Private

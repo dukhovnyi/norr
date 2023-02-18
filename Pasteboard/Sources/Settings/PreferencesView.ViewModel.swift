@@ -12,16 +12,16 @@ extension PreferencesView {
 
     final class ViewModel: ObservableObject {
 
-        let history: HistoryManaging
+//        let history: HistoryManaging
         let preferences: PreferencesManaging
 
         @Published var prefs: Preferences = .def
 
         init(
-            history: HistoryManaging,
+//            history: HistoryManaging,
             preferences: PreferencesManaging
         ) {
-            self.history = history
+//            self.history = history
             self.preferences = preferences
             self.subscription = preferences.preferences()
                 .sink(receiveValue: { [weak self] newValue in

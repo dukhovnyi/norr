@@ -23,7 +23,7 @@ struct Preferences: Equatable, Codable {
 extension Preferences {
 
     static let def: Self = .init(
-        storageCapacity: 50,
-        wipeHistoryOnClose: true
+        storageCapacity: 300,
+        wipeHistoryOnClose: false
     )
 }

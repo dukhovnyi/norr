@@ -18,7 +18,7 @@ extension HistoryManaging {
 
         func alignCountWithCapacity() {
             var over = cache.count - preferencesManaging.current().storageCapacity
-            guard over <= 0 else { return }
+            guard over > 0 else { return }
 
             while over > 0 {
                 if let min = cache.min() {
@@ -39,8 +39,7 @@ extension HistoryManaging {
             save: {
                 cache.insert($0)
                 updateSubj.send(.insert($0))
-
-
+                alignCountWithCapacity()
             },
             clean: {
                 cache.removeAll()

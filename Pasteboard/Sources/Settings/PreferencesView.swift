@@ -32,11 +32,11 @@ struct PreferencesView: View {
                 ) {
                     Text("3")
                         .tag(3)
-                    Text("10")
-                        .tag(10)
                     Text("50")
-                        .tag(50)
+                        .tag(10)
                     Text("100")
+                        .tag(50)
+                    Text("300")
                         .tag(100)
                     Text("Unlimited")
                         .tag(Int.max)
@@ -53,10 +53,6 @@ struct PreferencesView: View {
                         .tag(false)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-
-                Button("Clean history") { [weak viewModel] in
-                    viewModel?.history.clean()
-                }
             }
         }
         .onChange(of: viewModel.prefs) { [weak viewModel] newValue in
@@ -69,7 +65,6 @@ struct PreferencesView_Previews: PreviewProvider {
     static var previews: some View {
         PreferencesView(
             viewModel: .init(
-                history: .inMemory(preferencesManaging: .mock()),
                 preferences: .mock()
             )
         )

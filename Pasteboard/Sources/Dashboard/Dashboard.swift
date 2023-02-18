@@ -28,7 +28,6 @@ struct Dashboard: View {
                                 viewModel.use(paste: item)
                             }
                             .tag(item)
-                            .padding()
                     }
                     .listStyle(.bordered(alternatesRowBackgrounds: true))
                     .listItemTint(.primary)
@@ -60,7 +59,7 @@ struct Dashboard: View {
                 }
 
             case .preferences:
-                PreferencesView(viewModel: .init(history: .inMemory(preferencesManaging: .live()), preferences: .live()))
+                PreferencesView(viewModel: viewModel.preferencesViewModel())
                     .padding()
                 Spacer()
             }
@@ -93,7 +92,7 @@ struct Dashboard: View {
                 Button(
                     action: { viewModel.cleanHistory() },
                     label: {
-                        Text("Clean history ...")
+                        Text("Clean history")
                     }
                 )
                 .padding(8)
@@ -128,7 +127,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard(
             viewModel: .init(
-                keeper: .init(pasteboard: .general, preferencesManaging: .mock(), storage: .mock()),
+                keeper: .init(pasteboard: .general, preferencesManaging: .mock()),
                 onDidPaste: {},
                 state: .active
             )

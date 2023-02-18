@@ -11,7 +11,7 @@ import Foundation
 /// Defines mechanisms for cooperation with application configuration
 ///  including storing, fetching, etc.
 ///
-struct PreferencesManaging {
+class PreferencesManaging {
 
     /// Gets current preferences.
     ///
@@ -25,13 +25,25 @@ struct PreferencesManaging {
     /// Updates preferences and store it.
     ///
     var update: (Preferences) -> Void
+
+    init(
+        current: @escaping () -> Preferences,
+        preferences: @escaping () -> AnyPublisher<Preferences, Never>,
+        update: @escaping (Preferences) -> Void
+    ) {
+
+        self.current = current
+        self.preferences = preferences
+        self.update = update
+    }
 }
 
 extension PreferencesManaging {
 
-    static func live() -> Self {
+    static func live() -> PreferencesManaging {
 
         @QuickStorage(key: "settings", defaultValue: Preferences.def) var pref
+
         let value = CurrentValueSubject<Preferences, Never>(pref)
 
         return .init(
@@ -51,7 +63,7 @@ extension PreferencesManaging {
     static func mock(
         subj: CurrentValueSubject<Preferences, Never> = .init(.def),
         update: @escaping (Preferences) -> Void = { _ in }
-    ) -> Self {
+    ) -> PreferencesManaging {
 
         .init(
             current: { subj.value },

@@ -63,7 +63,11 @@ final class PasteboardChangeListener {
         defer { changeCount = pasteboard.changeCount }
 
         valuePublisher.send(
-            .init(pasteboard: pasteboard)
+            .init(
+                pasteboard: pasteboard,
+                createdAt: Date.now,
+                id: UUID()
+            )
         )
     }
 }

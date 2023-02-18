@@ -11,7 +11,7 @@ import Combine
 final class Keeper {
 
     let preferencesManaging: PreferencesManaging
-    let history: HistoryManaging
+    private(set) var history: HistoryManaging
 
     /// Defines the state of current keeper.
     ///
@@ -21,14 +21,29 @@ final class Keeper {
 
     init(
         pasteboard: NSPasteboard,
-        preferencesManaging: PreferencesManaging,
-        storage: HistoryManaging
+        preferencesManaging: PreferencesManaging
     ) {
         self.listener = PasteboardChangeListener(pasteboard: pasteboard)
         self.pasteboard = pasteboard
         self.preferencesManaging = preferencesManaging
         self.stateSubj = .init(.inactive)
-        self.history = storage
+        self.history = preferencesManaging.current().wipeHistoryOnClose
+                ? .inMemory(preferencesManaging: preferencesManaging)
+                : .coreData(preferencesManaging: preferencesManaging)
+
+        self.preferencesSubscription = preferencesManaging.preferences()
+            .throttle(for: .seconds(1), scheduler: RunLoop.main, latest: true)
+            .removeDuplicates()
+            .sink { [weak self] preferences in
+
+                guard let self else { return }
+
+                if preferences.wipeHistoryOnClose {
+                    self.history = .inMemory(preferencesManaging: preferencesManaging)
+                } else {
+                    self.history = .coreData(preferencesManaging: preferencesManaging)
+                }
+            }
     }
 
     /// Initiates start listening pasteboard, stores paste if needed, etc.
@@ -38,7 +53,6 @@ final class Keeper {
         defer { stateSubj.send(.active) }
 
         listener.startObserving()
-
         listenerSubscription = listener.value
             .sink { [weak self] newPaste in
                 self?.history.save(newPaste)
@@ -51,15 +65,6 @@ final class Keeper {
 
         defer { stateSubj.send(.inactive) }
         listener.stopObserving()
-    }
-
-    @objc func paste(_ index: Int) {
-
-        guard let paste = history.cache().first(where: { $0.id == index }) else {
-            return
-        }
-
-        use(paste: paste)
     }
 
     func use(paste: Paste) {
@@ -77,6 +82,7 @@ final class Keeper {
 
     private let listener: PasteboardChangeListener
     private var listenerSubscription: AnyCancellable?
+    private var preferencesSubscription: AnyCancellable?
 }
 
 extension Keeper {

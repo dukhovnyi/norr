@@ -9,13 +9,36 @@ import AppKit
 
 struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
 
-    let id: Int
+    /// Unique identifier.
+    let id: String
+    /// Pasteboard change count.
+    let changeCount: Int
+    /// Created in the app history. This is not a time when it has been placed into
+    ///  pasteboard.
+    let createdAt: Date
+    /// Paste contents and representations.
     let contents: [Content]
 
     init(
-        pasteboard: NSPasteboard
+        id: String,
+        changeCount: Int,
+        createdAt: Date,
+        contents: [Paste.Content]
     ) {
-        self.id = pasteboard.changeCount
+        self.id = id
+        self.changeCount = changeCount
+        self.createdAt = createdAt
+        self.contents = contents
+    }
+
+    init(
+        pasteboard: NSPasteboard,
+        createdAt: Date,
+        id: UUID
+    ) {
+        self.id = id.uuidString
+        self.changeCount = pasteboard.changeCount
+        self.createdAt = createdAt
         self.contents = pasteboard.pasteboardItems?
             .reduce(into: [Content]()) { result, item in
                 result.append(
