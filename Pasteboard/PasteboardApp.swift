@@ -17,9 +17,9 @@ struct PasteboardApp: App {
 //        WindowGroup {
             PreferencesView(viewModel: .init(preferences: appDelegate.keeper.preferencesManaging))
                 .padding()
-                .fixedSize()
+//                .fixedSize()
         }
-        .windowResizability(.contentSize)
+//        .windowResizability(.contentSize)
         .handlesExternalEvents(matching: ["pasteboard"])
     }
 }

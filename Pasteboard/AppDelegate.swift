@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let contentView = dashbaord
             .edgesIgnoringSafeArea(.top)
         // Create the window and set the content view.
-        panel = FloatingPanel(contentRect: NSRect(x: 0, y: 0, width: 700, height: 333), backing: .buffered, defer: false)
+        panel = FloatingPanel(contentRect: NSRect(x: 0, y: 0, width: 700, height: 600), backing: .buffered, defer: false)
         panel?.title = "Floating Panel Title"
         panel?.contentView = NSHostingView(rootView: contentView)
     }

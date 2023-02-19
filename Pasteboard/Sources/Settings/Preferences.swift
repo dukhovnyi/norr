@@ -24,6 +24,6 @@ extension Preferences {
 
     static let def: Self = .init(
         storageCapacity: 300,
-        wipeHistoryOnClose: false
+        wipeHistoryOnClose: true
     )
 }

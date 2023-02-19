@@ -19,6 +19,8 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
     /// Paste contents and representations.
     let contents: [Content]
 
+    let previewType: PreviewType
+
     init(
         id: String,
         changeCount: Int,
@@ -29,6 +31,7 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
         self.changeCount = changeCount
         self.createdAt = createdAt
         self.contents = contents
+        self.previewType = PreviewType(contents: contents)
     }
 
     init(
@@ -36,15 +39,19 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
         createdAt: Date,
         id: UUID
     ) {
-        self.id = id.uuidString
-        self.changeCount = pasteboard.changeCount
-        self.createdAt = createdAt
-        self.contents = pasteboard.pasteboardItems?
+        let contents = pasteboard.pasteboardItems?
             .reduce(into: [Content]()) { result, item in
                 result.append(
                     contentsOf: item.types.map { Content(type: $0, value: item.data(forType: $0)) }
                 )
             } ?? []
+
+        self.init(
+            id: id.uuidString,
+            changeCount: pasteboard.changeCount,
+            createdAt: createdAt,
+            contents: contents
+        )
     }
 
     var description: String {
@@ -58,6 +65,7 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
 
     var stringRepresentation: String {
 
+        print(contents.map { "Tpye: \($0.type.rawValue) \r\n \(String(decoding: $0.value ?? .init(), as: UTF8.self)) "}.joined(separator: "\r\n"))
         if let data = contents.first(where: { $0.type == .string })?.value {
             return String(decoding: data, as: UTF8.self)
         }
@@ -70,14 +78,6 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
 //        assertionFailure("unknown contents='\(msg)'.")
 
         return msg.isEmpty ? contents.map { "\($0.type)" }.joined() : msg
-    }
-}
-
-extension Paste {
-
-    struct Content: Hashable {
-        let type: NSPasteboard.PasteboardType
-        let value: Data?
     }
 }
 

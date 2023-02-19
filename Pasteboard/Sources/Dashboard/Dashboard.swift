@@ -143,9 +143,164 @@ extension Dashboard {
         @State var paste: Paste
 
         var body: some View {
+            paste.preview
+                .font(.body)
+        }
+    }
+}
+
+extension Paste {
+
+    @ViewBuilder func badge(_ text: String) -> some View {
+        HStack(alignment: .bottom) {
+            Spacer()
+            VStack {
+                Spacer()
+                Text(text)
+                    .font(.footnote)
+                    .opacity(0.5)
+            }
+        }
+    }
+
+    @ViewBuilder var preview: some View {
+
+        switch previewType {
+
+        case .plainText(let text):
+            ZStack(alignment: .leading) {
+
+                Text(text)
+
+                badge("Plain Text")
+            }
+
+        case .richText(let attributedString):
+            ZStack(alignment: .leading) {
+                Text(attributedString)
+                    .frame(maxWidth: .infinity)
+
+                badge("Rich Text")
+            }
+            .padding()
+            .ifLet(attributedString.backgroundColor?.cgColor) { view, cgColor in
+                view.background(Color(cgColor))
+            }
+
+        case .color(let color):
+            ZStack(alignment: .leading) {
+
                 HStack {
-                    Text(paste.stringRepresentation.replacingOccurrences(of: "\r\n", with: "􀅇").prefix(128))
+                    Text("   ")
+                        .padding(3)
+                        .background(Color(color))
+                    Text("red: \(color.redComponent) green: \(color.greenComponent) blue: \(color.blueComponent) hex: \(color.toHex() ?? "")")
                 }
+
+                badge("Color")
+            }
+
+        case .png(let imageData):
+            ZStack(alignment: .leading) {
+                if let nsImage = NSImage(data: imageData) {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Text("Image")
+                }
+
+                badge("Image")
+            }
+
+        case .fileUrl(let url):
+            ZStack(alignment: .leading) {
+                Text(url.absoluteString)
+
+                badge("File URL")
+            }
+
+        case .url(let url):
+            ZStack(alignment: .leading) {
+                Text(url.absoluteString)
+
+                badge("URL")
+            }
+        }
+
+    }
+}
+
+extension View {
+
+    @ViewBuilder func ifLet<Transform: View, V>(
+        _ condition: @autoclosure () -> V?,
+        @ViewBuilder transform: (Self, V) -> Transform
+    ) -> some View {
+
+        if let result = condition() {
+            transform(self, result)
+        } else {
+            self
+        }
+    }
+}
+
+extension NSColor {
+    convenience init(hex: String) {
+        let trimHex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        let dropHash = String(trimHex.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
+        let hexString = trimHex.starts(with: "#") ? dropHash : trimHex
+        let ui64 = UInt64(hexString, radix: 16)
+        let value = ui64 != nil ? Int(ui64!) : 0
+        // #RRGGBB
+        var components = (
+            R: CGFloat((value >> 16) & 0xff) / 255,
+            G: CGFloat((value >> 08) & 0xff) / 255,
+            B: CGFloat((value >> 00) & 0xff) / 255,
+            a: CGFloat(1)
+        )
+        if String(hexString).count == 8 {
+            // #RRGGBBAA
+            components = (
+                R: CGFloat((value >> 24) & 0xff) / 255,
+                G: CGFloat((value >> 16) & 0xff) / 255,
+                B: CGFloat((value >> 08) & 0xff) / 255,
+                a: CGFloat((value >> 00) & 0xff) / 255
+            )
+        }
+        self.init(red: components.R, green: components.G, blue: components.B, alpha: components.a)
+    }
+
+    func toHex(alpha: Bool = false) -> String? {
+//
+//        let spaces: [NSColorSpace] = [
+//            .extendedSRGB, .deviceRGB, .sRGB, .genericRGB, .extendedSRGB, .adobeRGB1998, .init()
+//        ]
+//
+//        print(
+//            spaces.compactMap { usingColorSpace($0) }.map { "\(colorSpace.debugDescription) \($0.cgColor.components?[0]) \($0.cgColor.components?[1]) \($0.cgColor.components?[2])" }.joined(separator: "\r\n")
+//        )
+//        let _cgColor = CGColor(red: redComponent / 255, green: greenComponent / 255, blue: blueComponent / 255, alpha: alphaComponent)
+//        let _cgColor = NSColor(red: redComponent, green: greenComponent, blue: blueComponent, alpha: alphaComponent).cgColor
+
+        guard let components = cgColor.components, components.count >= 3 else {
+            return nil
+        }
+
+        let r = Float(components[0])
+        let g = Float(components[1])
+        let b = Float(components[2])
+        var a = Float(1.0)
+
+        if components.count >= 4 {
+            a = Float(components[3])
+        }
+
+        if alpha {
+            return String(format: "%02lX%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255), lroundf(a * 255))
+        } else {
+            return String(format: "%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
         }
     }
 }
