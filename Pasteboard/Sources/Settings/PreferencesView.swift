@@ -43,16 +43,16 @@ struct PreferencesView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
 
-                Picker(
-                    "Wipe history on close app",
-                    selection: $viewModel.prefs.wipeHistoryOnClose
-                ) {
-                    Text("yes")
-                        .tag(true)
-                    Text("no")
-                        .tag(false)
-                }
-                .pickerStyle(SegmentedPickerStyle())
+//                Picker(
+//                    "Wipe history on close app",
+//                    selection: $viewModel.prefs.wipeHistoryOnClose
+//                ) {
+//                    Text("yes")
+//                        .tag(true)
+//                    Text("no")
+//                        .tag(false)
+//                }
+//                .pickerStyle(SegmentedPickerStyle())
             }
         }
         .onChange(of: viewModel.prefs) { [weak viewModel] newValue in

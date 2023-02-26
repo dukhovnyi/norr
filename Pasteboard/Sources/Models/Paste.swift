@@ -35,20 +35,21 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
     }
 
     init(
-        pasteboard: NSPasteboard,
+        id: UUID,
+        changeCount: Int,
         createdAt: Date,
-        id: UUID
+        pasteboardItems: [NSPasteboardItem]
     ) {
-        let contents = pasteboard.pasteboardItems?
+        let contents = pasteboardItems
             .reduce(into: [Content]()) { result, item in
                 result.append(
                     contentsOf: item.types.map { Content(type: $0, value: item.data(forType: $0)) }
                 )
-            } ?? []
+            }
 
         self.init(
             id: id.uuidString,
-            changeCount: pasteboard.changeCount,
+            changeCount: changeCount,
             createdAt: createdAt,
             contents: contents
         )

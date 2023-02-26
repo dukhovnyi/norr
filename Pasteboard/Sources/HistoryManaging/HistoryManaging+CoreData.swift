@@ -12,25 +12,25 @@ import Foundation
 extension HistoryManaging {
 
     static func coreData(
+        coreDataManaging: CoreDataManaging,
         preferencesManaging: PreferencesManaging
     ) -> Self {
 
-        let coreData = CoreDataStack()
-        var cache = readFromDb(moc: coreData.managedContext)
+        var cache = readFromDb(coreData: coreDataManaging)
         let updateSubj = PassthroughSubject<Update, Never>()
 
         return Self(
-            update: { updateSubj.eraseToAnyPublisher() },
+            updates: { updateSubj.eraseToAnyPublisher() },
             cache: { cache },
             save: { item in
 
-                defer { coreData.saveContext() }
+                defer { try? coreDataManaging.save() }
 
                 updateSubj.send(.insert(item))
                 cache.insert(item, at: 0)
 
                 // Add a new paste item to context
-                coreData.managedContext.addPaste(item)
+                coreDataManaging.managedObjectContext().addPaste(item)
 
                 let storageCapacity = preferencesManaging.current().storageCapacity
                 // verify is allowed capacity achieved
@@ -45,21 +45,21 @@ extension HistoryManaging {
                 fetchRequest.fetchLimit = cache.count - storageCapacity
 
                 do {
-                    let deletion = try coreData.managedContext.fetch(fetchRequest)
+                    let deletion = try coreDataManaging.managedObjectContext().fetch(fetchRequest)
 
-                    print("found \(deletion.count) \(deletion.map { $0.asPaste().stringRepresentation })")
+//                    print("found \(deletion.count) \(deletion.map { $0.asPaste().stringRepresentation })")
                     deletion.forEach {
                         let paste = $0.asPaste()
                         cache.removeAll(where: { $0.id == paste.id })
                         updateSubj.send(.remove(paste))
-                        coreData.managedContext.delete($0)
+                        coreDataManaging.managedObjectContext().delete($0)
                     }
                 } catch {
                     print("🔥 can't delete items from CoreData. Error='\(error)'.")
                 }
             },
             clean: {
-                Self.clean(moc: coreData.managedContext)
+                Self.clean(moc: coreDataManaging.managedObjectContext())
                 updateSubj.send(.removeAll)
                 cache.removeAll()
             }
@@ -68,15 +68,15 @@ extension HistoryManaging {
 
     /// Read all paste models form db
     ///
-    private static func readFromDb(moc: NSManagedObjectContext) -> [Paste] {
+    private static func readFromDb(coreData: CoreDataManaging) -> [Paste] {
 
         do {
-
             let fetchRequest = NSFetchRequest<PasteModel>(entityName: "PasteModel")
             fetchRequest.sortDescriptors = [
                 .init(key: "createdAt", ascending: false)
             ]
-            return try moc.fetch(fetchRequest).map { $0.asPaste() }
+            return try coreData.fetch(request: fetchRequest)
+                .map { $0.asPaste() }
 
         } catch {
             print("Initial cache has not been retrieved with error='\(error)'.")

@@ -30,7 +30,7 @@ extension HistoryManaging {
         }
 
         return HistoryManaging(
-            update: {
+            updates: {
                 updateSubj.eraseToAnyPublisher()
             },
             cache: {

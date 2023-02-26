@@ -12,7 +12,7 @@ import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let keeper: Keeper
+    let worker: Worker
     var cancellable: AnyCancellable?
 
     let hotKey = HotKey(key: .c, modifiers: [.command, .control])
@@ -20,15 +20,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var panel: FloatingPanel?
 
     override init() {
+        let preferencesManaging = PreferencesManaging.live()
 
-        let preferencesManaging: PreferencesManaging = .live()
-        self.keeper = .init(
-            pasteboard: .general,
-            preferencesManaging: preferencesManaging
+        self.worker = .init(
+            historyManaging: .coreData(coreDataManaging: .live(name: "PasteboardHistory"), preferencesManaging: preferencesManaging),
+            pasteboardManaging: .live(pasteboard: .general, interval: 1, now: { Date.now }),
+            preferences: preferencesManaging
         )
         super.init()
 
-        defer { keeper.start() }
+        defer { worker.start() }
 
         hotKey.keyDownHandler = { [weak self] in
             self?.createFloatingPanel()
@@ -74,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc
     private func cleanHistory() {
 
-        keeper.history.clean()
+        worker.clear()
     }
 
     @objc
@@ -103,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create the SwiftUI view that provides the window contents.
         // I've opted to ignore top safe area as well, since we're hiding the traffic icons
         let dashbaord = Dashboard(
-            viewModel: .init(keeper: self.keeper, onDidPaste: onDidPaste)
+            viewModel: .init(keeper: self.worker, onDidPaste: onDidPaste)
         )
         let contentView = dashbaord
             .edgesIgnoringSafeArea(.top)

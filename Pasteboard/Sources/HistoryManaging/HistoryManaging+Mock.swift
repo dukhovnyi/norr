@@ -17,7 +17,7 @@ extension HistoryManaging {
     ) -> Self {
 
         .init(
-            update: { updateSubj.eraseToAnyPublisher() },
+            updates: { updateSubj.eraseToAnyPublisher() },
             cache: cache,
             save: save,
             clean: clean

@@ -17,7 +17,7 @@ extension Dashboard {
         @Published var selected: Set<Paste> = []
         @Published var items = [Paste]()
         @Published var content: Content
-        @Published var state: Keeper.State
+        @Published var state: Worker.State
 
         @Published var stateButtonTitle = String()
         @Published var stateButtoneImageName = String()
@@ -25,10 +25,10 @@ extension Dashboard {
         var onDidPaste: () -> Void
 
         init(
-            keeper: Keeper,
+            keeper: Worker,
             onDidPaste: @escaping () -> Void,
             content: Content = .pasteboardList,
-            state: Keeper.State = .inactive
+            state: Worker.State = .inactive
         ) {
             self.keeper = keeper
             self.onDidPaste = onDidPaste
@@ -36,7 +36,7 @@ extension Dashboard {
             self.state = state
 
             items = keeper.history.cache()
-            updateSubscription = keeper.history.update()
+            updateSubscription = keeper.history.updates()
                 .receive(on: RunLoop.main)
                 .sink { [weak self] update in
 
@@ -122,13 +122,13 @@ extension Dashboard {
 
         func preferencesViewModel() -> PreferencesView.ViewModel {
             PreferencesView.ViewModel(
-                preferences: keeper.preferencesManaging
+                preferences: keeper.preferences
             )
         }
 
         // MARK: - Private
 
-        private let keeper: Keeper
+        private let keeper: Worker
         private var stateSubscriptions: AnyCancellable?
         private var updateSubscription: AnyCancellable?
         private var cancellables = Set<AnyCancellable>()

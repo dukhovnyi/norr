@@ -16,10 +16,11 @@ struct HistoryManaging {
         case removeAll
     }
 
-    var update: () -> AnyPublisher<Update, Never>
+    var updates: () -> AnyPublisher<Update, Never>
 
     var cache: () -> [Paste]
 
     var save: (Paste) -> Void
+
     var clean: () -> Void
 }

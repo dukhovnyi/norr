@@ -127,7 +127,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard(
             viewModel: .init(
-                keeper: .init(pasteboard: .general, preferencesManaging: .mock()),
+                keeper: .init(historyManaging: .mock(), pasteboardManaging: .mock(), preferences: .mock()),
                 onDidPaste: {},
                 state: .active
             )
