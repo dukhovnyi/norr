@@ -38,7 +38,7 @@ extension HistoryManaging {
             },
             save: {
                 cache.insert($0)
-                updateSubj.send(.insert($0))
+                updateSubj.send(.append($0))
                 alignCountWithCapacity()
             },
             clean: {

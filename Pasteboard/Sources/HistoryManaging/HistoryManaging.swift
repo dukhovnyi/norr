@@ -11,7 +11,7 @@ import Foundation
 struct HistoryManaging {
 
     enum Update {
-        case insert(Paste)
+        case append(Paste)
         case remove(Paste)
         case removeAll
     }

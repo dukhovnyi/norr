@@ -25,18 +25,18 @@ extension Dashboard {
         var onDidPaste: () -> Void
 
         init(
-            keeper: Worker,
+            worker: Worker,
             onDidPaste: @escaping () -> Void,
             content: Content = .pasteboardList,
             state: Worker.State = .inactive
         ) {
-            self.keeper = keeper
+            self.keeper = worker
             self.onDidPaste = onDidPaste
             self.content = content
             self.state = state
 
-            items = keeper.history.cache()
-            updateSubscription = keeper.history.updates()
+            items = worker.history.cache()
+            updateSubscription = worker.history.updates()
                 .receive(on: RunLoop.main)
                 .sink { [weak self] update in
 
@@ -48,13 +48,13 @@ extension Dashboard {
                     case .remove(let item):
                         self?.items.removeAll(where: { $0 == item })
 
-                    case .insert(let item):
+                    case .append(let item):
                         self?.items.insert(item, at: 0)
                     }
 
                 }
 
-            self.stateSubscriptions = keeper.state
+            self.stateSubscriptions = worker.state
                 .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: true)
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { [weak self] newState in

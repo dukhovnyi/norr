@@ -21,13 +21,13 @@ extension HistoryManaging {
 
         return Self(
             updates: { updateSubj.eraseToAnyPublisher() },
-            cache: { cache },
+            cache: { cache.sorted() },
             save: { item in
 
                 defer { try? coreDataManaging.save() }
 
-                updateSubj.send(.insert(item))
-                cache.insert(item, at: 0)
+                updateSubj.send(.append(item))
+                cache.append(item)
 
                 // Add a new paste item to context
                 coreDataManaging.managedObjectContext().addPaste(item)
@@ -73,13 +73,13 @@ extension HistoryManaging {
         do {
             let fetchRequest = NSFetchRequest<PasteModel>(entityName: "PasteModel")
             fetchRequest.sortDescriptors = [
-                .init(key: "createdAt", ascending: false)
+                .init(key: "createdAt", ascending: true)
             ]
             return try coreData.fetch(request: fetchRequest)
                 .map { $0.asPaste() }
 
         } catch {
-            print("Initial cache has not been retrieved with error='\(error)'.")
+            print("🔥 Initial cache has not been retrieved with error='\(error)'.")
             return []
         }
     }

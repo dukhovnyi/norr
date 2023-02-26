@@ -127,7 +127,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard(
             viewModel: .init(
-                keeper: .init(historyManaging: .mock(), pasteboardManaging: .mock(), preferences: .mock()),
+                worker: .init(historyManaging: .mock(), pasteboardManaging: .mock(), preferences: .mock()),
                 onDidPaste: {},
                 state: .active
             )
@@ -204,8 +204,8 @@ extension Paste {
             ZStack(alignment: .leading) {
                 if let nsImage = NSImage(data: imageData) {
                     Image(nsImage: nsImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .ifCondition(nsImage.size.width > 320, transform: { $0.resizable() })
+                        .frame(maxHeight: 240)
                 } else {
                     Text("Image")
                 }
@@ -240,6 +240,18 @@ extension View {
 
         if let result = condition() {
             transform(self, result)
+        } else {
+            self
+        }
+    }
+
+    @ViewBuilder func ifCondition(
+        _ condition: @autoclosure () -> Bool,
+        @ViewBuilder transform: (Self) -> some View
+    ) -> some View {
+
+        if condition() {
+            transform(self)
         } else {
             self
         }

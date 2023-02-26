@@ -104,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create the SwiftUI view that provides the window contents.
         // I've opted to ignore top safe area as well, since we're hiding the traffic icons
         let dashbaord = Dashboard(
-            viewModel: .init(keeper: self.worker, onDidPaste: onDidPaste)
+            viewModel: .init(worker: self.worker, onDidPaste: onDidPaste)
         )
         let contentView = dashbaord
             .edgesIgnoringSafeArea(.top)
