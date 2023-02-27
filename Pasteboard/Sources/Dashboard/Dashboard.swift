@@ -158,7 +158,8 @@ extension Paste {
                 Spacer()
                 Text(text)
                     .font(.footnote)
-                    .opacity(0.5)
+                    .bold()
+                    .opacity(0.1)
             }
         }
     }
@@ -169,17 +170,13 @@ extension Paste {
 
         case .plainText(let text):
             ZStack(alignment: .leading) {
-
                 Text(text)
-
                 badge("Plain Text")
             }
 
         case .richText(let attributedString):
             ZStack(alignment: .leading) {
                 Text(attributedString)
-                    .frame(maxWidth: .infinity)
-
                 badge("Rich Text")
             }
             .padding()
@@ -201,10 +198,11 @@ extension Paste {
             }
 
         case .png(let imageData):
-            ZStack(alignment: .leading) {
+            ZStack {
                 if let nsImage = NSImage(data: imageData) {
                     Image(nsImage: nsImage)
-                        .ifCondition(nsImage.size.width > 320, transform: { $0.resizable() })
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
                         .frame(maxHeight: 240)
                 } else {
                     Text("Image")
@@ -285,16 +283,6 @@ extension NSColor {
     }
 
     func toHex(alpha: Bool = false) -> String? {
-//
-//        let spaces: [NSColorSpace] = [
-//            .extendedSRGB, .deviceRGB, .sRGB, .genericRGB, .extendedSRGB, .adobeRGB1998, .init()
-//        ]
-//
-//        print(
-//            spaces.compactMap { usingColorSpace($0) }.map { "\(colorSpace.debugDescription) \($0.cgColor.components?[0]) \($0.cgColor.components?[1]) \($0.cgColor.components?[2])" }.joined(separator: "\r\n")
-//        )
-//        let _cgColor = CGColor(red: redComponent / 255, green: greenComponent / 255, blue: blueComponent / 255, alpha: alphaComponent)
-//        let _cgColor = NSColor(red: redComponent, green: greenComponent, blue: blueComponent, alpha: alphaComponent).cgColor
 
         guard let components = cgColor.components, components.count >= 3 else {
             return nil

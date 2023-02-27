@@ -35,7 +35,7 @@ extension Dashboard {
             self.content = content
             self.state = state
 
-            items = worker.history.cache()
+            items = worker.history.cache().sorted { $0.createdAt > $1.createdAt }
             updateSubscription = worker.history.updates()
                 .receive(on: RunLoop.main)
                 .sink { [weak self] update in

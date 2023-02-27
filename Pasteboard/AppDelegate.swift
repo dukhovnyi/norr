@@ -7,16 +7,13 @@
 
 import AppKit
 import Combine
-import HotKey
+import KeyboardShortcuts
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let worker: Worker
     var cancellable: AnyCancellable?
-
-    let hotKey = HotKey(key: .c, modifiers: [.command, .control])
-
     var panel: FloatingPanel?
 
     override init() {
@@ -31,17 +28,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         defer { worker.start() }
 
-        hotKey.keyDownHandler = { [weak self] in
+        KeyboardShortcuts.onKeyUp(for: .pasteboard) { [weak self] in
             self?.createFloatingPanel()
 
-                // Center doesn't place it in the absolute center, see the documentation for more details
-                self?.panel?.center()
+            // Center doesn't place it in the absolute center, see the documentation for more details
+            self?.panel?.center()
 
-                // Shows the panel and makes it active
-                self?.panel?.orderFront(nil)
-                self?.panel?.makeKey()
-                self?.panel?.level = .floating
-            }
+            // Shows the panel and makes it active
+            self?.panel?.orderFront(nil)
+            self?.panel?.makeKey()
+            self?.panel?.level = .floating
+        }
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -49,10 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let statusBar = NSStatusBar.system
 
         statusBarItem = statusBar.statusItem(withLength: NSStatusItem.variableLength)
-        statusBarItem?.button?.image = NSImage(
-            systemSymbolName: "paperclip",
-            accessibilityDescription: "Pasteboard"
-        )
+        statusBarItem?.button?.image = NSImage(named: "statusbar-icon")
 
         let menu = NSMenu()
 

@@ -12,16 +12,19 @@ extension PreferencesView {
 
     final class ViewModel: ObservableObject {
 
-//        let history: HistoryManaging
+        let formatter: NumberFormatter = {
+            let f = NumberFormatter()
+            f.minimum = 3
+            f.maximum = 1_000
+            return f
+        }()
         let preferences: PreferencesManaging
 
         @Published var prefs: Preferences = .def
 
         init(
-//            history: HistoryManaging,
             preferences: PreferencesManaging
         ) {
-//            self.history = history
             self.preferences = preferences
             self.subscription = preferences.preferences()
                 .sink(receiveValue: { [weak self] newValue in

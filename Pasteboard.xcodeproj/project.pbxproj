@@ -14,13 +14,15 @@
 		751AF4DE298713FC007A3311 /* HistoryManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751AF4DD298713FC007A3311 /* HistoryManaging.swift */; };
 		751AF4E0298719EB007A3311 /* PreferencesView.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751AF4DF298719EB007A3311 /* PreferencesView.ViewModel.swift */; };
 		751AF4E329871A45007A3311 /* QuickStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751AF4E229871A45007A3311 /* QuickStorage.swift */; };
-		756EA69D2990229200CE2356 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 756EA69C2990229200CE2356 /* HotKey */; };
 		756EA6A32990516900CE2356 /* Dashboard.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */; };
 		756EA6A62990524300CE2356 /* HistoryManaging+InMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A52990524300CE2356 /* HistoryManaging+InMemory.swift */; };
 		756EA6A82990525C00CE2356 /* HistoryManaging+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A72990525C00CE2356 /* HistoryManaging+Mock.swift */; };
 		758EC8A0299805D7003562EC /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758EC89F299805D7003562EC /* FloatingPanel.swift */; };
 		758EC8A429999A01003562EC /* PasteboardHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 758EC8A229999A01003562EC /* PasteboardHistory.xcdatamodeld */; };
 		758EC8A629999A0F003562EC /* CoreDataManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758EC8A529999A0F003562EC /* CoreDataManaging.swift */; };
+		75A935AF29AD46C600DB20ED /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 75A935AE29AD46C600DB20ED /* KeyboardShortcuts */; };
+		75A935B229AD46E500DB20ED /* KeyboardShortcts+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */; };
+		75A935B529AD4CA500DB20ED /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 75A935B429AD4CA500DB20ED /* LaunchAtLogin */; };
 		75B881C1297C1F7400048A2F /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C0297C1F7400048A2F /* EntryPoint.swift */; };
 		75B881C3297C1F7400048A2F /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C2297C1F7400048A2F /* Dashboard.swift */; };
 		75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B881C4297C1F7600048A2F /* Assets.xcassets */; };
@@ -60,6 +62,7 @@
 		758EC89F299805D7003562EC /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
 		758EC8A329999A01003562EC /* PasteboardPrint.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PasteboardPrint.xcdatamodel; sourceTree = "<group>"; };
 		758EC8A529999A0F003562EC /* CoreDataManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManaging.swift; sourceTree = "<group>"; };
+		75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardShortcts+Name.swift"; sourceTree = "<group>"; };
 		75B881BD297C1F7400048A2F /* Pasteboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pasteboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B881C0297C1F7400048A2F /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
 		75B881C2297C1F7400048A2F /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
@@ -84,7 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				756EA69D2990229200CE2356 /* HotKey in Frameworks */,
+				75A935B529AD4CA500DB20ED /* LaunchAtLogin in Frameworks */,
+				75A935AF29AD46C600DB20ED /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +102,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		751AF4CA2986EEE5007A3311 /* Settings */ = {
+		751AF4CA2986EEE5007A3311 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
 				751AF4CB2986EEF1007A3311 /* Preferences.swift */,
@@ -106,7 +110,7 @@
 				751AF4DF298719EB007A3311 /* PreferencesView.ViewModel.swift */,
 				751AF4D829870D5A007A3311 /* PreferencesManaging.swift */,
 			);
-			path = Settings;
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		751AF4DA29870FF8007A3311 /* Extensions */ = {
@@ -162,6 +166,14 @@
 			path = LocalStorage;
 			sourceTree = "<group>";
 		};
+		75A935B029AD46D100DB20ED /* KeyboardShortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */,
+			);
+			path = KeyboardShortcuts;
+			sourceTree = "<group>";
+		};
 		75B881B4297C1F7400048A2F = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +217,7 @@
 		75B881CF297C7B8900048A2F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				75A935B029AD46D100DB20ED /* KeyboardShortcuts */,
 				75FEFABD29AB5A3D00B7432C /* PasteboardManaging */,
 				75EE306129A246E700DB0D35 /* Models */,
 				758EC8A1299999C3003562EC /* LocalStorage */,
@@ -212,7 +225,7 @@
 				756EA69E2990446100CE2356 /* FloatingPanel */,
 				751AF4E129871A33007A3311 /* PropertyWrappers */,
 				751AF4DA29870FF8007A3311 /* Extensions */,
-				751AF4CA2986EEE5007A3311 /* Settings */,
+				751AF4CA2986EEE5007A3311 /* Preferences */,
 				756EA6A12990515100CE2356 /* Dashboard */,
 				75B881D2297D6DB000048A2F /* Worker.swift */,
 			);
@@ -263,7 +276,8 @@
 			);
 			name = Pasteboard;
 			packageProductDependencies = (
-				756EA69C2990229200CE2356 /* HotKey */,
+				75A935AE29AD46C600DB20ED /* KeyboardShortcuts */,
+				75A935B429AD4CA500DB20ED /* LaunchAtLogin */,
 			);
 			productName = Pasteboard;
 			productReference = 75B881BD297C1F7400048A2F /* Pasteboard.app */;
@@ -316,7 +330,8 @@
 			);
 			mainGroup = 75B881B4297C1F7400048A2F;
 			packageReferences = (
-				756EA69B2990229200CE2356 /* XCRemoteSwiftPackageReference "HotKey" */,
+				75A935AD29AD46C600DB20ED /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				75A935B329AD4CA500DB20ED /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 			);
 			productRefGroup = 75B881BE297C1F7400048A2F /* Products */;
 			projectDirPath = "";
@@ -365,6 +380,7 @@
 				758EC8A429999A01003562EC /* PasteboardHistory.xcdatamodeld in Sources */,
 				75FEFABF29AB5E7300B7432C /* PasteboardManaging+Mock.swift in Sources */,
 				75B881C3297C1F7400048A2F /* Dashboard.swift in Sources */,
+				75A935B229AD46E500DB20ED /* KeyboardShortcts+Name.swift in Sources */,
 				75B881D3297D6DB000048A2F /* Worker.swift in Sources */,
 				751AF4D929870D5A007A3311 /* PreferencesManaging.swift in Sources */,
 				75B881D5297D6F4900048A2F /* Paste.swift in Sources */,
@@ -518,7 +534,7 @@
 				CODE_SIGN_ENTITLEMENTS = Pasteboard/Pasteboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Pasteboard/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -529,7 +545,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.Pasteboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -546,7 +562,7 @@
 				CODE_SIGN_ENTITLEMENTS = Pasteboard/Pasteboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Pasteboard/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -557,7 +573,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.Pasteboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -573,7 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.PasteboardTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -590,7 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.PasteboardTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -633,21 +649,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		756EA69B2990229200CE2356 /* XCRemoteSwiftPackageReference "HotKey" */ = {
+		75A935AD29AD46C600DB20ED /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/soffes/HotKey";
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
+				minimumVersion = 1.9.4;
+			};
+		};
+		75A935B329AD4CA500DB20ED /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		756EA69C2990229200CE2356 /* HotKey */ = {
+		75A935AE29AD46C600DB20ED /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 756EA69B2990229200CE2356 /* XCRemoteSwiftPackageReference "HotKey" */;
-			productName = HotKey;
+			package = 75A935AD29AD46C600DB20ED /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+		75A935B429AD4CA500DB20ED /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75A935B329AD4CA500DB20ED /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
+			productName = LaunchAtLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 

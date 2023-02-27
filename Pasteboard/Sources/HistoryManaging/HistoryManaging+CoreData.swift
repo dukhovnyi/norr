@@ -21,10 +21,12 @@ extension HistoryManaging {
 
         return Self(
             updates: { updateSubj.eraseToAnyPublisher() },
-            cache: { cache.sorted() },
+            cache: { cache.sorted { $0.createdAt > $1.createdAt} },
             save: { item in
 
-                defer { try? coreDataManaging.save() }
+                defer { 
+                    try? coreDataManaging.save()
+                }
 
                 updateSubj.send(.append(item))
                 cache.append(item)
@@ -46,8 +48,6 @@ extension HistoryManaging {
 
                 do {
                     let deletion = try coreDataManaging.managedObjectContext().fetch(fetchRequest)
-
-//                    print("found \(deletion.count) \(deletion.map { $0.asPaste().stringRepresentation })")
                     deletion.forEach {
                         let paste = $0.asPaste()
                         cache.removeAll(where: { $0.id == paste.id })

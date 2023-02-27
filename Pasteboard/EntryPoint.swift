@@ -14,12 +14,8 @@ struct EntryPoint: App {
     
     var body: some Scene {
         Settings {
-//        WindowGroup {
             PreferencesView(viewModel: .init(preferences: appDelegate.worker.preferences))
                 .padding()
-//                .fixedSize()
         }
-//        .windowResizability(.contentSize)
-        .handlesExternalEvents(matching: ["pasteboard"])
     }
 }

@@ -66,7 +66,6 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
 
     var stringRepresentation: String {
 
-        print(contents.map { "Tpye: \($0.type.rawValue) \r\n \(String(decoding: $0.value ?? .init(), as: UTF8.self)) "}.joined(separator: "\r\n"))
         if let data = contents.first(where: { $0.type == .string })?.value {
             return String(decoding: data, as: UTF8.self)
         }
@@ -79,11 +78,5 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
 //        assertionFailure("unknown contents='\(msg)'.")
 
         return msg.isEmpty ? contents.map { "\($0.type)" }.joined() : msg
-    }
-}
-
-extension Paste: Comparable {
-    static func < (lhs: Paste, rhs: Paste) -> Bool {
-        lhs.id < rhs.id
     }
 }

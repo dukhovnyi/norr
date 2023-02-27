@@ -21,7 +21,7 @@ extension HistoryManaging {
             guard over > 0 else { return }
 
             while over > 0 {
-                if let min = cache.min() {
+                if let min = cache.min(by: { $0.createdAt < $1.createdAt }) {
                     cache.remove(min)
                     updateSubj.send(.remove(min))
                 }
@@ -34,7 +34,7 @@ extension HistoryManaging {
                 updateSubj.eraseToAnyPublisher()
             },
             cache: {
-                cache.sorted().reversed()
+                cache.sorted { $0.createdAt > $1.createdAt }
             },
             save: {
                 cache.insert($0)
