@@ -8,6 +8,7 @@
 import AppKit
 import Combine
 import KeyboardShortcuts
+import Sentry
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -42,6 +43,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+
+        SentrySDK.start { opts in
+            opts.dsn = "https://d06222e078c742e99a8720270e39b112@o4504754069766144.ingest.sentry.io/4504754071404544"
+            opts.debug = true // Enabled debug when first installing is always helpful
+
+            // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+            // We recommend adjusting this value in production.
+            opts.tracesSampleRate = 1.0
+        }
 
         let statusBar = NSStatusBar.system
 

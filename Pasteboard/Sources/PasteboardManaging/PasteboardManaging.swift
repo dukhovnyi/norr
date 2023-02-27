@@ -38,6 +38,7 @@ extension PasteboardManaging {
 
                     guard pasteboard.changeCount != changeCount else { return }
                     changeCount = pasteboard.changeCount
+
                     valueSubj.send(
                         .init(
                             id: .init(),

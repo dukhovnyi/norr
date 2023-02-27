@@ -61,7 +61,6 @@ struct PreferencesView_Previews: PreviewProvider {
                 preferences: .mock()
             )
         )
-//        .frame(width: 600)
     }
 }
 

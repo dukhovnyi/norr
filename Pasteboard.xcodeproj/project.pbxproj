@@ -23,6 +23,8 @@
 		75A935AF29AD46C600DB20ED /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 75A935AE29AD46C600DB20ED /* KeyboardShortcuts */; };
 		75A935B229AD46E500DB20ED /* KeyboardShortcts+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */; };
 		75A935B529AD4CA500DB20ED /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 75A935B429AD4CA500DB20ED /* LaunchAtLogin */; };
+		75AFF95829AD551A005709DA /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 75AFF95729AD551A005709DA /* Sentry */; };
+		75AFF95A29AD551A005709DA /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 75AFF95929AD551A005709DA /* SentrySwiftUI */; };
 		75B881C1297C1F7400048A2F /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C0297C1F7400048A2F /* EntryPoint.swift */; };
 		75B881C3297C1F7400048A2F /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C2297C1F7400048A2F /* Dashboard.swift */; };
 		75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B881C4297C1F7600048A2F /* Assets.xcassets */; };
@@ -88,7 +90,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				75A935B529AD4CA500DB20ED /* LaunchAtLogin in Frameworks */,
+				75AFF95A29AD551A005709DA /* SentrySwiftUI in Frameworks */,
 				75A935AF29AD46C600DB20ED /* KeyboardShortcuts in Frameworks */,
+				75AFF95829AD551A005709DA /* Sentry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +282,8 @@
 			packageProductDependencies = (
 				75A935AE29AD46C600DB20ED /* KeyboardShortcuts */,
 				75A935B429AD4CA500DB20ED /* LaunchAtLogin */,
+				75AFF95729AD551A005709DA /* Sentry */,
+				75AFF95929AD551A005709DA /* SentrySwiftUI */,
 			);
 			productName = Pasteboard;
 			productReference = 75B881BD297C1F7400048A2F /* Pasteboard.app */;
@@ -332,6 +338,7 @@
 			packageReferences = (
 				75A935AD29AD46C600DB20ED /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 				75A935B329AD4CA500DB20ED /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
+				75AFF95629AD551A005709DA /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = 75B881BE297C1F7400048A2F /* Products */;
 			projectDirPath = "";
@@ -534,7 +541,7 @@
 				CODE_SIGN_ENTITLEMENTS = Pasteboard/Pasteboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Pasteboard/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -562,7 +569,7 @@
 				CODE_SIGN_ENTITLEMENTS = Pasteboard/Pasteboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Pasteboard/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -665,6 +672,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		75AFF95629AD551A005709DA /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -677,6 +692,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75A935B329AD4CA500DB20ED /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
 			productName = LaunchAtLogin;
+		};
+		75AFF95729AD551A005709DA /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75AFF95629AD551A005709DA /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		75AFF95929AD551A005709DA /* SentrySwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75AFF95629AD551A005709DA /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = SentrySwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 
