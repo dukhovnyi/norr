@@ -57,7 +57,9 @@ extension Paste {
                     documentAttributes: nil
                 )
                 var attributedString = AttributedString(nsAttributedString)
-                attributedString.backgroundColor = .init(nsColor: nsAttributedString.attribute(.backgroundColor, at: 0, effectiveRange: nil) as! NSColor)
+                if let color = nsAttributedString.attribute(.backgroundColor, at: 0, effectiveRange: nil) as? NSColor {
+                    attributedString.backgroundColor = .init(nsColor: color)
+                }
                 return attributedString
 
             } catch {

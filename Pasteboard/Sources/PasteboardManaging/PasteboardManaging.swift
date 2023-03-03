@@ -39,12 +39,14 @@ extension PasteboardManaging {
                     guard pasteboard.changeCount != changeCount else { return }
                     changeCount = pasteboard.changeCount
 
+                    let bundle = NSWorkspace.shared.frontmostApplication?.bundleURL
                     valueSubj.send(
                         .init(
                             id: .init(),
                             changeCount: changeCount,
                             createdAt: now(),
-                            pasteboardItems: pasteboard.pasteboardItems ?? []
+                            pasteboardItems: pasteboard.pasteboardItems ?? [],
+                            bundleUrl: bundle
                         )
                     )
                 }

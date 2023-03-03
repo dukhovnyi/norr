@@ -122,7 +122,8 @@ private extension PasteModel {
             id: self.id ?? UUID().uuidString,
             changeCount: Int(self.changeCount),
             createdAt: self.createdAt ?? .now,
-            contents: mapToPasteContents(self.pasteContents ?? [])
+            contents: mapToPasteContents(self.pasteContents ?? []),
+            bundleUrl: self.bundleURL
         )
     }
 
@@ -148,6 +149,7 @@ private extension NSManagedObjectContext {
         newItem.createdAt = Date.now
         newItem.id = paste.id
         newItem.changeCount = Int64(paste.changeCount)
+        newItem.bundleURL = paste.bundleUrl
         paste.contents.forEach {
             let content = PasteContentModel(context: self)
             content.type = $0.type.rawValue

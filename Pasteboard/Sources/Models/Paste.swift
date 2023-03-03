@@ -19,26 +19,28 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
     /// Paste contents and representations.
     let contents: [Content]
 
-    let previewType: PreviewType
+    let bundleUrl: URL?
 
     init(
         id: String,
         changeCount: Int,
         createdAt: Date,
-        contents: [Paste.Content]
+        contents: [Paste.Content],
+        bundleUrl: URL?
     ) {
         self.id = id
         self.changeCount = changeCount
         self.createdAt = createdAt
         self.contents = contents
-        self.previewType = PreviewType(contents: contents)
+        self.bundleUrl = bundleUrl
     }
 
     init(
         id: UUID,
         changeCount: Int,
         createdAt: Date,
-        pasteboardItems: [NSPasteboardItem]
+        pasteboardItems: [NSPasteboardItem],
+        bundleUrl: URL?
     ) {
         let contents = pasteboardItems
             .reduce(into: [Content]()) { result, item in
@@ -51,7 +53,8 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
             id: id.uuidString,
             changeCount: changeCount,
             createdAt: createdAt,
-            contents: contents
+            contents: contents,
+            bundleUrl: bundleUrl
         )
     }
 

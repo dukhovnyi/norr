@@ -126,6 +126,11 @@ extension Dashboard {
             )
         }
 
+        @ViewBuilder
+        func preview(for paste: Paste) -> PastePreview {
+            PastePreview(bundleUrl: paste.bundleUrl, type: Paste.PreviewType(contents: paste.contents))
+        }
+
         // MARK: - Private
 
         private let keeper: Worker

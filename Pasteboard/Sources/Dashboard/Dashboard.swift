@@ -23,7 +23,7 @@ struct Dashboard: View {
                 ZStack {
                     List(viewModel.items, selection: $viewModel.selected) { item in
 
-                        Row(paste: item)
+                        viewModel.preview(for: item)
                             .onTapGesture {
                                 viewModel.use(paste: item)
                             }
@@ -132,100 +132,6 @@ struct ContentView_Previews: PreviewProvider {
                 state: .active
             )
         )
-    }
-}
-
-
-extension Dashboard {
-
-    struct Row: View {
-
-        @State var paste: Paste
-
-        var body: some View {
-            paste.preview
-                .font(.body)
-        }
-    }
-}
-
-extension Paste {
-
-    @ViewBuilder func badge(_ text: String) -> some View {
-        HStack(alignment: .bottom) {
-            Spacer()
-            VStack {
-                Spacer()
-                Text(text)
-                    .font(.footnote)
-                    .bold()
-                    .opacity(0.1)
-            }
-        }
-    }
-
-    @ViewBuilder var preview: some View {
-
-        switch previewType {
-
-        case .plainText(let text):
-            ZStack(alignment: .leading) {
-                Text(text)
-                badge("Plain Text")
-            }
-
-        case .richText(let attributedString):
-            ZStack(alignment: .leading) {
-                Text(attributedString)
-                badge("Rich Text")
-            }
-            .padding()
-            .ifLet(attributedString.backgroundColor?.cgColor) { view, cgColor in
-                view.background(Color(cgColor))
-            }
-
-        case .color(let color):
-            ZStack(alignment: .leading) {
-
-                HStack {
-                    Text("   ")
-                        .padding(3)
-                        .background(Color(color))
-                    Text("red: \(color.redComponent) green: \(color.greenComponent) blue: \(color.blueComponent) hex: \(color.toHex() ?? "")")
-                }
-
-                badge("Color")
-            }
-
-        case .png(let imageData):
-            ZStack {
-                if let nsImage = NSImage(data: imageData) {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 240)
-                } else {
-                    Text("Image")
-                }
-
-                badge("Image")
-            }
-
-        case .fileUrl(let url):
-            ZStack(alignment: .leading) {
-                Text(url.absoluteString)
-
-                badge("File URL")
-            }
-
-        case .url(let url):
-            ZStack(alignment: .leading) {
-                Text(url.absoluteString)
-
-                badge("URL")
-            }
-        }
-
     }
 }
 
