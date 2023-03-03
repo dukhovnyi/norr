@@ -28,12 +28,14 @@ extension Dashboard {
             worker: Worker,
             onDidPaste: @escaping () -> Void,
             content: Content = .pasteboardList,
-            state: Worker.State = .inactive
+            state: Worker.State = .inactive,
+            analytics: AnalyticsManaging
         ) {
             self.keeper = worker
             self.onDidPaste = onDidPaste
             self.content = content
             self.state = state
+            self.analytics = analytics
 
             items = worker.history.cache().sorted { $0.createdAt > $1.createdAt }
             updateSubscription = worker.history.updates()
@@ -101,6 +103,7 @@ extension Dashboard {
         }
 
         func preferencesClick() {
+            analytics.logEvent(.openPreferencesFromDashboard)
             withAnimation {
                 content = content == .pasteboardList ? .preferences : .pasteboardList
             }
@@ -138,6 +141,7 @@ extension Dashboard {
         private var updateSubscription: AnyCancellable?
         private var cancellables = Set<AnyCancellable>()
         private var eventMonitor: Any?
+        private let analytics: AnalyticsManaging
     }
 }
 

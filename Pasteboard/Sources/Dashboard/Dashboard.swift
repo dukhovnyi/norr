@@ -129,7 +129,8 @@ struct ContentView_Previews: PreviewProvider {
             viewModel: .init(
                 worker: .init(historyManaging: .mock(), pasteboardManaging: .mock(), preferences: .mock()),
                 onDidPaste: {},
-                state: .active
+                state: .active,
+                analytics: .init(appDidFinishLaunching: { _ in }, logEvent: { _ in })
             )
         )
     }

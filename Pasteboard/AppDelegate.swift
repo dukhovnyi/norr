@@ -8,7 +8,6 @@
 import AppKit
 import Combine
 import KeyboardShortcuts
-import Sentry
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -44,21 +43,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
 
-        SentrySDK.start { opts in
-            opts.dsn = "https://d06222e078c742e99a8720270e39b112@o4504754069766144.ingest.sentry.io/4504754071404544"
-            opts.debug = true // Enabled debug when first installing is always helpful
-
-            // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-            // We recommend adjusting this value in production.
-            opts.tracesSampleRate = 1.0
-        }
-
+#if DEBUG
+#else
+        analytics.appDidFinishLaunching(notification)
+#endif
         let statusBar = NSStatusBar.system
 
         statusBarItem = statusBar.statusItem(withLength: NSStatusItem.variableLength)
         statusBarItem?.button?.image = NSImage(named: "statusbar-icon")
 
         let menu = NSMenu()
+
+#if DEBUG
+        let label = "Dev Edition"
+#else
+        let label = ""
+#endif
+
+        menu.addItem(
+            .init(title: "\(Bundle.main.name): \(Bundle.main.semver) \(label)", action: nil, keyEquivalent: "")
+        )
 
         staticMenuItems.forEach {
             menu.addItem($0)
@@ -69,6 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Private
 
+    private let analytics: AnalyticsManaging = .live()
     private var statusBarItem: NSStatusItem?
 
     @objc
@@ -99,8 +104,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "Q")
     ]
 
-
-
     private func createFloatingPanel() {
         let onDidPaste: () -> Void = { [weak self] in
             self?.panel?.orderOut(nil)
@@ -108,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create the SwiftUI view that provides the window contents.
         // I've opted to ignore top safe area as well, since we're hiding the traffic icons
         let dashbaord = Dashboard(
-            viewModel: .init(worker: self.worker, onDidPaste: onDidPaste)
+            viewModel: .init(worker: self.worker, onDidPaste: onDidPaste, analytics: self.analytics)
         )
         let contentView = dashbaord
             .edgesIgnoringSafeArea(.top)

@@ -17,7 +17,7 @@ struct PastePreview: View {
 
         case .plainText(let text):
             ZStack(alignment: .leading) {
-                Text(text)
+                Text(text.prefix(140))
                 badge("Plain Text")
             }
 
