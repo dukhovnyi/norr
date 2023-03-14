@@ -13,9 +13,8 @@ struct EntryPoint: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
-        Settings {
-            PreferencesView(viewModel: .init(preferences: appDelegate.worker.preferences))
-                .padding()
+        WindowGroup {
+            LandingView()
         }
     }
 }

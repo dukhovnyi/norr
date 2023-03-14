@@ -80,7 +80,7 @@ struct PastePreview: View {
     ) -> some View {
         HStack(alignment: .bottom) {
             Spacer()
-            if let path = bundleUrl?.path(), let icon = NSWorkspace.shared.icon(forFile: path) {
+            if let path = bundleUrl?.path, let icon = NSWorkspace.shared.icon(forFile: path) {
                 Image(nsImage: icon)
                     .resizable()
                     .frame(width: 24, height: 24)
