@@ -21,6 +21,7 @@
 		753B5F5A29BE6A3400BBADD7 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F5929BE6A3400BBADD7 /* LandingView.swift */; };
 		753B5F9829C0F62000BBADD7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 753B5F9729C0F62000BBADD7 /* LaunchAtLogin */; };
 		753B5F9B29C1038A00BBADD7 /* SubscriptionManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */; };
+		753B5F9E29C1179800BBADD7 /* WorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F9D29C1179800BBADD7 /* WorkerTests.swift */; };
 		756EA6A32990516900CE2356 /* Dashboard.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */; };
 		756EA6A62990524300CE2356 /* HistoryManaging+InMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A52990524300CE2356 /* HistoryManaging+InMemory.swift */; };
 		756EA6A82990525C00CE2356 /* HistoryManaging+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A72990525C00CE2356 /* HistoryManaging+Mock.swift */; };
@@ -47,7 +48,6 @@
 		75EE306329A2473600DB0D35 /* Paste+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE306229A2473600DB0D35 /* Paste+Content.swift */; };
 		75EE306529A248E600DB0D35 /* Paste+PreviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE306429A248E600DB0D35 /* Paste+PreviewType.swift */; };
 		75FEFABF29AB5E7300B7432C /* PasteboardManaging+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FEFABE29AB5E7200B7432C /* PasteboardManaging+Mock.swift */; };
-		75FEFAC729AB64E800B7432C /* WorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FEFAC629AB64E800B7432C /* WorkerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +74,7 @@
 		751B99F829B29D95003A45C5 /* AnalyticsManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManaging.swift; sourceTree = "<group>"; };
 		753B5F5929BE6A3400BBADD7 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManaging.swift; sourceTree = "<group>"; };
+		753B5F9D29C1179800BBADD7 /* WorkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
 		756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.ViewModel.swift; sourceTree = "<group>"; };
 		756EA6A52990524300CE2356 /* HistoryManaging+InMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryManaging+InMemory.swift"; sourceTree = "<group>"; };
 		756EA6A72990525C00CE2356 /* HistoryManaging+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryManaging+Mock.swift"; sourceTree = "<group>"; };
@@ -83,12 +84,12 @@
 		75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardShortcts+Name.swift"; sourceTree = "<group>"; };
 		75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75B1AEAE29BD1CDA00DA784E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		75B881BD297C1F7400048A2F /* Pasteboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pasteboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75B881BD297C1F7400048A2F /* PasteOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B881C0297C1F7400048A2F /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
 		75B881C2297C1F7400048A2F /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		75B881C4297C1F7600048A2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75B881C7297C1F7600048A2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		75B881C9297C1F7600048A2F /* Pasteboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pasteboard.entitlements; sourceTree = "<group>"; };
+		75B881C9297C1F7600048A2F /* PasteOn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PasteOn.entitlements; sourceTree = "<group>"; };
 		75B881D0297C7B9800048A2F /* PasteboardManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManaging.swift; sourceTree = "<group>"; };
 		75B881D2297D6DB000048A2F /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		75B881D4297D6F4900048A2F /* Paste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paste.swift; sourceTree = "<group>"; };
@@ -98,8 +99,7 @@
 		75EE306229A2473600DB0D35 /* Paste+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Paste+Content.swift"; sourceTree = "<group>"; };
 		75EE306429A248E600DB0D35 /* Paste+PreviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Paste+PreviewType.swift"; sourceTree = "<group>"; };
 		75FEFABE29AB5E7200B7432C /* PasteboardManaging+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Mock.swift"; sourceTree = "<group>"; };
-		75FEFAC429AB64E800B7432C /* PasteboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasteboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		75FEFAC629AB64E800B7432C /* WorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
+		75FEFAC429AB64E800B7432C /* PasteOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasteOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +180,14 @@
 			path = SubscriptionManaging;
 			sourceTree = "<group>";
 		};
+		753B5F9C29C1179800BBADD7 /* PasteOnTests */ = {
+			isa = PBXGroup;
+			children = (
+				753B5F9D29C1179800BBADD7 /* WorkerTests.swift */,
+			);
+			path = PasteOnTests;
+			sourceTree = "<group>";
+		};
 		756EA69E2990446100CE2356 /* FloatingPanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +245,8 @@
 		75B881B4297C1F7400048A2F = {
 			isa = PBXGroup;
 			children = (
-				75B881BF297C1F7400048A2F /* Pasteboard */,
-				75FEFAC529AB64E800B7432C /* PasteboardTests */,
+				753B5F9C29C1179800BBADD7 /* PasteOnTests */,
+				75B881BF297C1F7400048A2F /* PasteOn */,
 				75B881BE297C1F7400048A2F /* Products */,
 				75B1AEAD29BD1CD900DA784E /* Frameworks */,
 			);
@@ -247,13 +255,13 @@
 		75B881BE297C1F7400048A2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75B881BD297C1F7400048A2F /* Pasteboard.app */,
-				75FEFAC429AB64E800B7432C /* PasteboardTests.xctest */,
+				75B881BD297C1F7400048A2F /* PasteOn.app */,
+				75FEFAC429AB64E800B7432C /* PasteOnTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75B881BF297C1F7400048A2F /* Pasteboard */ = {
+		75B881BF297C1F7400048A2F /* PasteOn */ = {
 			isa = PBXGroup;
 			children = (
 				75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */,
@@ -262,10 +270,10 @@
 				75B881D6297DCD6500048A2F /* AppDelegate.swift */,
 				75B881C0297C1F7400048A2F /* EntryPoint.swift */,
 				75B881C4297C1F7600048A2F /* Assets.xcassets */,
-				75B881C9297C1F7600048A2F /* Pasteboard.entitlements */,
+				75B881C9297C1F7600048A2F /* PasteOn.entitlements */,
 				75B881C6297C1F7600048A2F /* Preview Content */,
 			);
-			path = Pasteboard;
+			path = PasteOn;
 			sourceTree = "<group>";
 		};
 		75B881C6297C1F7600048A2F /* Preview Content */ = {
@@ -316,20 +324,12 @@
 			path = PasteboardManaging;
 			sourceTree = "<group>";
 		};
-		75FEFAC529AB64E800B7432C /* PasteboardTests */ = {
-			isa = PBXGroup;
-			children = (
-				75FEFAC629AB64E800B7432C /* WorkerTests.swift */,
-			);
-			path = PasteboardTests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		75B881BC297C1F7400048A2F /* Pasteboard */ = {
+		75B881BC297C1F7400048A2F /* PasteOn */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "Pasteboard" */;
+			buildConfigurationList = 75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "PasteOn" */;
 			buildPhases = (
 				75B881B9297C1F7400048A2F /* Sources */,
 				75B881BA297C1F7400048A2F /* Frameworks */,
@@ -340,7 +340,7 @@
 			);
 			dependencies = (
 			);
-			name = Pasteboard;
+			name = PasteOn;
 			packageProductDependencies = (
 				75A935AE29AD46C600DB20ED /* KeyboardShortcuts */,
 				75B1AEA129BD1BEF00DA784E /* FirebaseAnalyticsSwift */,
@@ -350,12 +350,12 @@
 				753B5F9729C0F62000BBADD7 /* LaunchAtLogin */,
 			);
 			productName = Pasteboard;
-			productReference = 75B881BD297C1F7400048A2F /* Pasteboard.app */;
+			productReference = 75B881BD297C1F7400048A2F /* PasteOn.app */;
 			productType = "com.apple.product-type.application";
 		};
-		75FEFAC329AB64E800B7432C /* PasteboardTests */ = {
+		75FEFAC329AB64E800B7432C /* PasteOnTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75FEFACA29AB64E800B7432C /* Build configuration list for PBXNativeTarget "PasteboardTests" */;
+			buildConfigurationList = 75FEFACA29AB64E800B7432C /* Build configuration list for PBXNativeTarget "PasteOnTests" */;
 			buildPhases = (
 				75FEFAC029AB64E800B7432C /* Sources */,
 				75FEFAC129AB64E800B7432C /* Frameworks */,
@@ -366,9 +366,9 @@
 			dependencies = (
 				75FEFAC929AB64E800B7432C /* PBXTargetDependency */,
 			);
-			name = PasteboardTests;
+			name = PasteOnTests;
 			productName = PasteboardTests;
-			productReference = 75FEFAC429AB64E800B7432C /* PasteboardTests.xctest */;
+			productReference = 75FEFAC429AB64E800B7432C /* PasteOnTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -390,7 +390,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 75B881B8297C1F7400048A2F /* Build configuration list for PBXProject "Pasteboard" */;
+			buildConfigurationList = 75B881B8297C1F7400048A2F /* Build configuration list for PBXProject "PasteOn" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -408,8 +408,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75B881BC297C1F7400048A2F /* Pasteboard */,
-				75FEFAC329AB64E800B7432C /* PasteboardTests */,
+				75B881BC297C1F7400048A2F /* PasteOn */,
+				75FEFAC329AB64E800B7432C /* PasteOnTests */,
 			);
 		};
 /* End PBXProject section */
@@ -499,7 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75FEFAC729AB64E800B7432C /* WorkerTests.swift in Sources */,
+				753B5F9E29C1179800BBADD7 /* WorkerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +508,7 @@
 /* Begin PBXTargetDependency section */
 		75FEFAC929AB64E800B7432C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75B881BC297C1F7400048A2F /* Pasteboard */;
+			target = 75B881BC297C1F7400048A2F /* PasteOn */;
 			targetProxy = 75FEFAC829AB64E800B7432C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -632,17 +632,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Pasteboard/Pasteboard.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PasteOn/PasteOn.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"Pasteboard/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PasteOn/Preview Content\"";
 				DEVELOPMENT_TEAM = GWVKCPM685;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pasteboard/Info.plist;
+				INFOPLIST_FILE = PasteOn/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -663,16 +664,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Pasteboard/Pasteboard.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PasteOn/PasteOn.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_ASSET_PATHS = "\"Pasteboard/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PasteOn/Preview Content\"";
 				DEVELOPMENT_TEAM = GWVKCPM685;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pasteboard/Info.plist;
+				INFOPLIST_FILE = PasteOn/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -701,7 +703,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pasteboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pasteboard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasteOn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PasteOn";
 			};
 			name = Debug;
 		};
@@ -718,14 +720,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pasteboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pasteboard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasteOn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PasteOn";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		75B881B8297C1F7400048A2F /* Build configuration list for PBXProject "Pasteboard" */ = {
+		75B881B8297C1F7400048A2F /* Build configuration list for PBXProject "PasteOn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75B881CA297C1F7600048A2F /* Debug */,
@@ -734,7 +736,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "Pasteboard" */ = {
+		75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "PasteOn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75B881CD297C1F7600048A2F /* Debug */,
@@ -743,7 +745,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75FEFACA29AB64E800B7432C /* Build configuration list for PBXNativeTarget "PasteboardTests" */ = {
+		75FEFACA29AB64E800B7432C /* Build configuration list for PBXNativeTarget "PasteOnTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75FEFACB29AB64E800B7432C /* Debug */,

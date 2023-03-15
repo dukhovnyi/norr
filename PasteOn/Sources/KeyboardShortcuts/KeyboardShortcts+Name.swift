@@ -12,3 +12,11 @@ extension KeyboardShortcuts.Name {
 
     static let pasteboard = Self("display-panel", default: .init(.c, modifiers: [.command, .control]))
 }
+
+enum Shortcut {
+
+    static var stringRepresentation: String {
+        guard let shortcut = KeyboardShortcuts.getShortcut(for: .pasteboard) else { return "Cmd+Ctrl+C"}
+        return "\(shortcut)"
+    }
+}
