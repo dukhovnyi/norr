@@ -88,7 +88,7 @@ extension Dashboard {
 
                 guard let self = self, let paste = self.selected.first else { return event }
 
-                if event.keyCode == 36 {
+                if [0x4C, 0x24].contains(event.keyCode) {
                     self.use(paste: paste)
                 }
                 return event
