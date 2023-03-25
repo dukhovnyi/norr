@@ -14,10 +14,9 @@ extension PasteboardManaging {
         now: @escaping () -> Date = { Date.now },
         onStart: @escaping () -> Void = {},
         onStop: @escaping () -> Void = {},
-        onApply: @escaping () -> Void = {}
+        onApply: @escaping () -> Void = {},
+        value: PassthroughSubject<Paste, Never> = .init()
     ) -> Self {
-
-        let value = PassthroughSubject<Paste, Never>()
 
         return .init(
             value: value.eraseToAnyPublisher(),

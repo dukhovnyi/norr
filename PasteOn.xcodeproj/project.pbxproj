@@ -18,6 +18,8 @@
 		751B99EE29B2837E003A45C5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B99ED29B2837E003A45C5 /* String+Extensions.swift */; };
 		751B99F029B2915C003A45C5 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B99EF29B2915C003A45C5 /* AttributedString.swift */; };
 		751B99F929B29D95003A45C5 /* AnalyticsManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B99F829B29D95003A45C5 /* AnalyticsManaging.swift */; };
+		752E436129CFA2C400DB7421 /* PasteboardManaging+TraceableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E436029CFA2C400DB7421 /* PasteboardManaging+TraceableMock.swift */; };
+		752E436329CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E436229CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift */; };
 		753B5F5A29BE6A3400BBADD7 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F5929BE6A3400BBADD7 /* LandingView.swift */; };
 		753B5F9829C0F62000BBADD7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 753B5F9729C0F62000BBADD7 /* LaunchAtLogin */; };
 		753B5F9B29C1038A00BBADD7 /* SubscriptionManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */; };
@@ -72,6 +74,8 @@
 		751B99ED29B2837E003A45C5 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		751B99EF29B2915C003A45C5 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		751B99F829B29D95003A45C5 /* AnalyticsManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManaging.swift; sourceTree = "<group>"; };
+		752E436029CFA2C400DB7421 /* PasteboardManaging+TraceableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+TraceableMock.swift"; sourceTree = "<group>"; };
+		752E436229CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryManaging+TraceableMock.swift"; sourceTree = "<group>"; };
 		753B5F5929BE6A3400BBADD7 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManaging.swift; sourceTree = "<group>"; };
 		753B5F9D29C1179800BBADD7 /* WorkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
@@ -164,6 +168,15 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		752E435F29CFA2B200DB7421 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				752E436029CFA2C400DB7421 /* PasteboardManaging+TraceableMock.swift */,
+				752E436229CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		753B5F5829BE69B200BBADD7 /* LandingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +196,7 @@
 		753B5F9C29C1179800BBADD7 /* PasteOnTests */ = {
 			isa = PBXGroup;
 			children = (
+				752E435F29CFA2B200DB7421 /* Utils */,
 				753B5F9D29C1179800BBADD7 /* WorkerTests.swift */,
 			);
 			path = PasteOnTests;
@@ -245,8 +259,8 @@
 		75B881B4297C1F7400048A2F = {
 			isa = PBXGroup;
 			children = (
-				753B5F9C29C1179800BBADD7 /* PasteOnTests */,
 				75B881BF297C1F7400048A2F /* PasteOn */,
+				753B5F9C29C1179800BBADD7 /* PasteOnTests */,
 				75B881BE297C1F7400048A2F /* Products */,
 				75B1AEAD29BD1CD900DA784E /* Frameworks */,
 			);
@@ -499,6 +513,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752E436329CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift in Sources */,
+				752E436129CFA2C400DB7421 /* PasteboardManaging+TraceableMock.swift in Sources */,
 				753B5F9E29C1179800BBADD7 /* WorkerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,7 +652,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PasteOn/Preview Content\"";
 				DEVELOPMENT_TEAM = GWVKCPM685;
@@ -668,7 +684,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"PasteOn/Preview Content\"";
 				DEVELOPMENT_TEAM = GWVKCPM685;
 				ENABLE_PREVIEWS = YES;
