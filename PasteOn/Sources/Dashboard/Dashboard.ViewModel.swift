@@ -14,7 +14,7 @@ extension Dashboard {
 
     final class ViewModel: ObservableObject {
 
-        @Published var selected: Set<Paste> = []
+        @Published var selected: Paste?
         @Published var items = [Paste]()
         @Published var content: Content
         @Published var state: Worker.State
@@ -86,7 +86,7 @@ extension Dashboard {
 
             self.eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { [weak self] event in
 
-                guard let self = self, let paste = self.selected.first else { return event }
+                guard let self = self, let paste = self.selected else { return event }
 
                 if [0x4C, 0x24].contains(event.keyCode) {
                     self.use(paste: paste)
