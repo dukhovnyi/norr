@@ -23,11 +23,16 @@ struct Dashboard: View {
                 ZStack {
                     List(viewModel.items, selection: $viewModel.selected) { item in
 
-                        viewModel.preview(for: item)
-                            .onTapGesture {
-                                viewModel.use(paste: item)
-                            }
-                            .tag(item)
+                        PastePreview(
+                            paste: item,
+                            onRemove: { viewModel.remove(paste: item) },
+                            pin: { viewModel.pin(paste: item) },
+                            unpin: { viewModel.unpin(paste: item) }
+                        )
+                        .onTapGesture {
+                            viewModel.use(paste: item)
+                        }
+                        .tag(item)
                     }
                     .listStyle(.bordered(alternatesRowBackgrounds: true))
                     .listItemTint(.primary)

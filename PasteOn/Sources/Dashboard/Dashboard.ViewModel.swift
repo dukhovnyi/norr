@@ -52,6 +52,11 @@ extension Dashboard {
 
                     case .append(let item):
                         self?.items.insert(item, at: 0)
+
+                    case .update(let item):
+                        guard var update = self?.items.first(where: { $0.id == item.id }) else { return }
+                        print("\(update.isBolted) > \(item.isBolted)")
+                        update.isBolted = item.isBolted
                     }
 
                 }
@@ -80,6 +85,18 @@ extension Dashboard {
         func use(paste: Paste) {
             keeper.use(paste: paste)
             onDidPaste()
+        }
+
+        func remove(paste: Paste) {
+            keeper.history.remove(paste)
+        }
+
+        func pin(paste: Paste) {
+            keeper.history.pin(paste)
+        }
+
+        func unpin(paste: Paste) {
+            keeper.history.unpin(paste)
         }
 
         func onAppear() {
@@ -127,11 +144,6 @@ extension Dashboard {
             PreferencesView.ViewModel(
                 preferences: keeper.preferences
             )
-        }
-
-        @ViewBuilder
-        func preview(for paste: Paste) -> PastePreview {
-            PastePreview(bundleUrl: paste.bundleUrl, type: Paste.PreviewType(contents: paste.contents))
         }
 
         // MARK: - Private

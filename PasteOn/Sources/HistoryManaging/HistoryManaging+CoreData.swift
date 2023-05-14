@@ -12,11 +12,11 @@ import Foundation
 extension HistoryManaging {
 
     static func coreData(
-        coreDataManaging: CoreDataManaging,
+        managing: CoreDataManaging,
         preferencesManaging: PreferencesManaging
     ) -> Self {
 
-        var cache = readFromDb(coreData: coreDataManaging)
+        var cache = readFromDb(coreData: managing)
         let updateSubj = PassthroughSubject<Update, Never>()
 
         return Self(
@@ -25,14 +25,14 @@ extension HistoryManaging {
             save: { item in
 
                 defer { 
-                    try? coreDataManaging.save()
+                    try? managing.save()
                 }
 
                 updateSubj.send(.append(item))
                 cache.append(item)
 
                 // Add a new paste item to context
-                coreDataManaging.managedObjectContext().addPaste(item)
+                managing.container().viewContext.addPaste(item)
 
                 let storageCapacity = preferencesManaging.current().storageCapacity
                 // verify is allowed capacity achieved
@@ -47,21 +47,58 @@ extension HistoryManaging {
                 fetchRequest.fetchLimit = cache.count - storageCapacity
 
                 do {
-                    let deletion = try coreDataManaging.managedObjectContext().fetch(fetchRequest)
+                    let deletion = try managing.container().viewContext.fetch(fetchRequest)
                     deletion.forEach {
                         let paste = $0.asPaste()
                         cache.removeAll(where: { $0.id == paste.id })
                         updateSubj.send(.remove(paste))
-                        coreDataManaging.managedObjectContext().delete($0)
+                        managing.container().viewContext.delete($0)
                     }
                 } catch {
                     print("🔥 can't delete items from CoreData. Error='\(error)'.")
                 }
             },
+            remove: { item in
+                defer {
+                    try? managing.save()
+                }
+
+                let fetchRequest = NSFetchRequest<PasteModel>(entityName: "PasteModel")
+                fetchRequest.predicate = .init(format: "id == %@", item.id)
+
+                do {
+                    let deletion = try managing.container().viewContext.fetch(fetchRequest)
+                    deletion.forEach {
+                        let paste = $0.asPaste()
+                        cache.removeAll(where: { $0.id == paste.id })
+                        updateSubj.send(.remove(paste))
+                        managing.container().viewContext.delete($0)
+                    }
+                } catch {
+                    print("🔥 can't delete items from CoreData. Error='\(error)'.")
+                }
+
+            },
             clean: {
-                Self.clean(moc: coreDataManaging.managedObjectContext())
+                Self.clean(managing: managing)
                 updateSubj.send(.removeAll)
                 cache.removeAll()
+            },
+            pin: { paste in
+                guard let pasteModel = findFirst(paste: paste, managing: managing) else { return }
+                pasteModel.isBolted = true
+                var pinnedPaste = paste
+                pinnedPaste.isBolted = true
+                updateSubj.send(.update(pinnedPaste))
+                try? managing.save()
+            },
+            unpin: { paste in
+                guard let pasteModel = findFirst(paste: paste, managing: managing) else { return }
+                pasteModel.isBolted = false
+                var unpinnedPaste = paste
+                unpinnedPaste.isBolted = false
+                updateSubj.send(.update(unpinnedPaste))
+                try? managing.save()
             }
         )
     }
@@ -71,12 +108,12 @@ extension HistoryManaging {
     private static func readFromDb(coreData: CoreDataManaging) -> [Paste] {
 
         do {
-            let fetchRequest = NSFetchRequest<PasteModel>(entityName: "PasteModel")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PasteModel")
             fetchRequest.sortDescriptors = [
                 .init(key: "createdAt", ascending: true)
             ]
             return try coreData.fetch(request: fetchRequest)
-                .map { $0.asPaste() }
+                .compactMap { ($0 as? PasteModel)?.asPaste() }
 
         } catch {
             print("🔥 Initial cache has not been retrieved with error='\(error)'.")
@@ -100,16 +137,26 @@ extension HistoryManaging {
         }
     }
 
-    private static func clean(moc: NSManagedObjectContext) {
-
-        let fetchRequest = NSFetchRequest<PasteModel>(entityName: "PasteModel")
+    private static func clean(managing: CoreDataManaging) {
 
         do {
-            let all = try moc.fetch(fetchRequest)
-            all.forEach { moc.delete($0) }
-            try moc.save()
+            let all = try managing.fetch(fetchRequestTemplate: "UserInitiatedCleanUp").compactMap { $0 as? PasteModel }
+            all.forEach { managing.container().viewContext.delete($0) }
+            try managing.container().viewContext.save()
         } catch {
             print("🔥 Clean has not been happen. Error='\(error)'.")
+        }
+    }
+
+    private static func findFirst(paste: Paste, managing: CoreDataManaging) -> PasteModel? {
+
+        do {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PasteModel")
+            request.predicate = .init(format: "id = %@", paste.id)
+            return try managing.fetch(request: request).first as? PasteModel
+        } catch {
+            print("🔥 Can't find paste with id='\(paste.id)'. Error='\(error)'.")
+            return nil
         }
     }
 }
@@ -123,7 +170,8 @@ private extension PasteModel {
             changeCount: Int(self.changeCount),
             createdAt: self.createdAt ?? .now,
             contents: mapToPasteContents(self.pasteContents ?? []),
-            bundleUrl: self.bundleURL
+            bundleUrl: self.bundleURL,
+            isBolted: isBolted
         )
     }
 
@@ -139,7 +187,7 @@ private extension PasteModel {
     }
 }
 
-private extension NSManagedObjectContext {
+extension NSManagedObjectContext {
 
     /// Converts `Paste` to `PasteModel` and add object to current context
     ///

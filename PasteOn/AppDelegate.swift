@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let preferencesManaging = PreferencesManaging.live()
 
         self.worker = .init(
-            historyManaging: .coreData(coreDataManaging: .live(name: "PasteboardHistory"), preferencesManaging: preferencesManaging),
+            historyManaging: .coreData(managing: .live(name: "PasteboardHistory"), preferencesManaging: preferencesManaging),
             pasteboardManaging: .live(pasteboard: .general, interval: 1, now: { Date.now }),
             preferences: preferencesManaging
         )

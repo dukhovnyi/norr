@@ -46,7 +46,8 @@ extension PasteboardManaging {
                             changeCount: changeCount,
                             createdAt: now(),
                             pasteboardItems: pasteboard.pasteboardItems ?? [],
-                            bundleUrl: bundle
+                            bundleUrl: bundle,
+                            isBolted: false
                         )
                     )
                 }

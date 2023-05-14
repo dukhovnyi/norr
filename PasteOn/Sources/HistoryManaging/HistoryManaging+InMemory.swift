@@ -41,9 +41,25 @@ extension HistoryManaging {
                 updateSubj.send(.append($0))
                 alignCountWithCapacity()
             },
+            remove: {
+                cache.remove($0)
+                updateSubj.send(.remove($0))
+            },
             clean: {
                 cache.removeAll()
                 updateSubj.send(.removeAll)
+            },
+            pin: { paste in
+                guard let idx = cache.firstIndex(where: { $0.id == paste.id }) else { return }
+                var pinned = cache.remove(at: idx)
+                pinned.isBolted = true
+                cache.insert(pinned)
+            },
+            unpin: { paste in
+                guard let idx = cache.firstIndex(where: { $0.id == paste.id }) else { return }
+                var pinned = cache.remove(at: idx)
+                pinned.isBolted = false
+                cache.insert(pinned)
             }
         )
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PasteContentModel" representedClassName="PasteContentModel" syncable="YES" codeGenerationType="class">
         <attribute name="data" optional="YES" attributeType="Binary"/>
         <attribute name="type" attributeType="String"/>
@@ -10,6 +10,9 @@
         <attribute name="changeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="isBolted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="pasteContents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PasteContentModel" inverseName="pasteModel" inverseEntity="PasteContentModel"/>
     </entity>
+    <fetchRequest name="FetchAllPaste" entity="PasteModel"/>
+    <fetchRequest name="UserInitiatedCleanUp" entity="PasteModel" predicateString="pinned == 0"/>
 </model>

@@ -10,11 +10,21 @@ import Foundation
 
 struct CoreDataManaging {
 
-    let managedObjectContext: () -> NSManagedObjectContext
+    let container: () -> NSPersistentContainer
     let save: () throws -> Void
 
-    func fetch<T: NSFetchRequestResult>(request: NSFetchRequest<T>) throws -> [T] {
-        try managedObjectContext().fetch(request)
+    func fetch(request: NSFetchRequest<NSFetchRequestResult>) throws -> [NSFetchRequestResult] {
+        try container().viewContext.fetch(request)
+    }
+
+    func fetch(fetchRequestTemplate name: String) throws -> [NSFetchRequestResult] {
+
+        guard let request = container().managedObjectModel.fetchRequestTemplate(forName: name) else {
+            assertionFailure("Fetch request template doesn't exist.")
+            return []
+        }
+
+        return try fetch(request: request)
     }
 }
 
@@ -32,7 +42,7 @@ extension CoreDataManaging {
         }
 
         return .init(
-            managedObjectContext: { container.viewContext },
+            container: { container },
             save: {
                 try container.viewContext.save()
             }

@@ -13,14 +13,20 @@ extension HistoryManaging {
         updateSubj: CurrentValueSubject<Update, Never> = .init(.removeAll),
         cache: @escaping () -> [Paste] = { [] },
         save: @escaping (Paste) -> Void = { _ in },
-        clean: @escaping () -> Void = {}
+        remove: @escaping (Paste) -> Void = { _ in },
+        clean: @escaping () -> Void = {},
+        pin: @escaping (Paste) -> Void = { _ in },
+        unpin: @escaping (Paste) -> Void = { _ in }
     ) -> Self {
 
         .init(
             updates: { updateSubj.eraseToAnyPublisher() },
             cache: cache,
             save: save,
-            clean: clean
+            remove: remove,
+            clean: clean,
+            pin: pin,
+            unpin: unpin
         )
     }
 }

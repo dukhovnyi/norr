@@ -114,11 +114,11 @@ extension Paste {
             type: NSPasteboard.PasteboardType
         ) -> URL? {
 
-            guard let colorContent = contents.first(where: { $0.type == type }) else {
+            guard let urlContent = contents.first(where: { $0.type == type }) else {
                 return nil
             }
 
-            guard let data = colorContent.value else {
+            guard let data = urlContent.value else {
                 debugPrint("🔥 \(type.rawValue.capitalized) content has no 'data'.")
                 return nil
             }

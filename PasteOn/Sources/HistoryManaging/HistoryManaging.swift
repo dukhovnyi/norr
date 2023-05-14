@@ -14,6 +14,7 @@ struct HistoryManaging {
         case append(Paste)
         case remove(Paste)
         case removeAll
+        case update(Paste)
     }
 
     var updates: () -> AnyPublisher<Update, Never>
@@ -21,6 +22,10 @@ struct HistoryManaging {
     var cache: () -> [Paste]
 
     var save: (Paste) -> Void
+    var remove: (Paste) -> Void
 
     var clean: () -> Void
+
+    var pin: (Paste) -> Void
+    var unpin: (Paste) -> Void
 }
