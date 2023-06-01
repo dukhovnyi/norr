@@ -16,8 +16,11 @@ struct AppContainer: View {
         VStack(alignment: .leading) {
 
             HistoryView(model: .init(engine: model.engine))
+                .padding(.top, -32)
 
             HStack {
+                Image("icon")
+
                 Text(model.appName)
                     .font(.largeTitle)
 
@@ -25,6 +28,18 @@ struct AppContainer: View {
                     .font(.footnote)
                     .foregroundColor(.gray)
                     .opacity(0.3)
+
+                Spacer()
+
+                Button(
+                    action: { [weak model] in model?.settingsClick() },
+                    label: {
+                        Image(systemName: "gear")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                    }
+                )
+                .buttonStyle(.borderless)
             }
             .padding()
         }
@@ -33,6 +48,8 @@ struct AppContainer: View {
 
 struct AppContainer_Previews: PreviewProvider {
     static var previews: some View {
-        AppContainer(model: .init(engine: .init(history: .previews(), pasteboard: .mock()), bundle: .main))
+        AppContainer(
+            model: .init(engine: .init(history: .previews(), pasteboard: .mock()), bundle: .main, hideUi: {})
+        )
     }
 }

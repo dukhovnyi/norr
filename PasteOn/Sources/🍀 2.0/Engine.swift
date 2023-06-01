@@ -19,8 +19,6 @@ final class Engine {
     ) {
         self.history = history
         self.pasteboard = pasteboard
-
-        start()
     }
 
     func start() {

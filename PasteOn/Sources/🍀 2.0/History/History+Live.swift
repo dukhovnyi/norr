@@ -70,6 +70,14 @@ extension History {
                 } catch {
                     debugPrint("🔥 Updating item='\(item.id)' has been failed with error='\(error)'.")
                 }
+            },
+            wipe: {
+                do {
+                    updatePublisher.send(.removeAll)
+                    try coreData.wipe()
+                } catch {
+                    debugPrint("🔥 Wiping data has been failed with error='\(error)'.")
+                }
             }
         )
     }

@@ -42,7 +42,6 @@ class FloatingPanel: NSPanel {
 
         // Keep the panel around after closing since I expect the user to open/close it often
         self.isReleasedWhenClosed = false
-
         // Activate this if you want the window to hide once it is no longer focused
         //        self.hidesOnDeactivate = true
 

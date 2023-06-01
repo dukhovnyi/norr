@@ -10,16 +10,12 @@ import SwiftUI
 @main
 struct EntryPoint: App {
     
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    let engine = Engine(
-        history: .live(persistentContainerName: "PasteboardHistory"),
-        pasteboard: .live(pasteboard: .general, interval: 0.7, now: { .now })
-    )
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     var body: some Scene {
-        WindowGroup {
-//            LandingView()
-            AppContainer(model: .init(engine: engine, bundle: .main))
+
+        Settings {            
+            SettingsView(model: .init(wipe: delegate.engine.history.wipe))
         }
     }
 }

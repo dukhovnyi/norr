@@ -15,10 +15,12 @@ extension PasteboardManaging {
         onStart: @escaping () -> Void = {},
         onStop: @escaping () -> Void = {},
         onApply: @escaping () -> Void = {},
+        event: PassthroughSubject<Event, Never> = .init(),
         value: PassthroughSubject<Paste, Never> = .init()
     ) -> Self {
 
         return .init(
+            event: event.eraseToAnyPublisher(),
             value: value.eraseToAnyPublisher(),
             start: onStart,
             stop: onStop,

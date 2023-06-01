@@ -15,7 +15,8 @@ extension History {
         fetchAll: @escaping () -> ([Paste]) = { [.mockPlainText(), .mockRtf(), .mockUrl(), .mockColor()] },
         append: @escaping (Paste) -> Void = { _ in },
         remove: @escaping (Paste) -> Void = { _ in },
-        update: @escaping (Paste) -> Void = { _ in }
+        update: @escaping (Paste) -> Void = { _ in },
+        wipe: @escaping () -> Void = { }
     ) -> Self {
 
         return .init(
@@ -23,7 +24,8 @@ extension History {
             fetchAll: fetchAll,
             append: append,
             remove: remove,
-            update: update
+            update: update,
+            wipe: wipe
         )
     }
 }

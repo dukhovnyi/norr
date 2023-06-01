@@ -22,7 +22,6 @@
 		752E436329CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E436229CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift */; };
 		753B5F5A29BE6A3400BBADD7 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F5929BE6A3400BBADD7 /* LandingView.swift */; };
 		753B5F9829C0F62000BBADD7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 753B5F9729C0F62000BBADD7 /* LaunchAtLogin */; };
-		753B5F9B29C1038A00BBADD7 /* SubscriptionManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */; };
 		753B5F9E29C1179800BBADD7 /* WorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753B5F9D29C1179800BBADD7 /* WorkerTests.swift */; };
 		756EA6A32990516900CE2356 /* Dashboard.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */; };
 		756EA6A62990524300CE2356 /* HistoryManaging+InMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756EA6A52990524300CE2356 /* HistoryManaging+InMemory.swift */; };
@@ -32,6 +31,11 @@
 		758EC8A629999A0F003562EC /* CoreDataManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758EC8A529999A0F003562EC /* CoreDataManaging.swift */; };
 		75A935AF29AD46C600DB20ED /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 75A935AE29AD46C600DB20ED /* KeyboardShortcuts */; };
 		75A935B229AD46E500DB20ED /* KeyboardShortcts+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */; };
+		75AA18B12A14174100F6B580 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B02A14174100F6B580 /* SettingsView.swift */; };
+		75AA18B32A1424E600F6B580 /* RetentionDataSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B22A1424E600F6B580 /* RetentionDataSettingsView.swift */; };
+		75AA18B62A14273400F6B580 /* LaunchAtLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B52A14273400F6B580 /* LaunchAtLoginView.swift */; };
+		75AA18B82A14278900F6B580 /* SettingsShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B72A14278900F6B580 /* SettingsShortcutView.swift */; };
+		75AA18BA2A16B73800F6B580 /* HistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B92A16B73800F6B580 /* HistoryRowView.swift */; };
 		75B1AE9F29BD1ADA00DA784E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */; };
 		75B1AEA229BD1BEF00DA784E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA129BD1BEF00DA784E /* FirebaseAnalyticsSwift */; };
 		75B1AEA429BD1BEF00DA784E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA329BD1BEF00DA784E /* FirebaseCrashlytics */; };
@@ -90,7 +94,6 @@
 		752E436029CFA2C400DB7421 /* PasteboardManaging+TraceableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+TraceableMock.swift"; sourceTree = "<group>"; };
 		752E436229CFA2CD00DB7421 /* HistoryManaging+TraceableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryManaging+TraceableMock.swift"; sourceTree = "<group>"; };
 		753B5F5929BE6A3400BBADD7 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
-		753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManaging.swift; sourceTree = "<group>"; };
 		753B5F9D29C1179800BBADD7 /* WorkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerTests.swift; sourceTree = "<group>"; };
 		756EA6A22990516900CE2356 /* Dashboard.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.ViewModel.swift; sourceTree = "<group>"; };
 		756EA6A52990524300CE2356 /* HistoryManaging+InMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryManaging+InMemory.swift"; sourceTree = "<group>"; };
@@ -99,9 +102,14 @@
 		758EC8A329999A01003562EC /* PasteboardPrint.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PasteboardPrint.xcdatamodel; sourceTree = "<group>"; };
 		758EC8A529999A0F003562EC /* CoreDataManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManaging.swift; sourceTree = "<group>"; };
 		75A935B129AD46E500DB20ED /* KeyboardShortcts+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardShortcts+Name.swift"; sourceTree = "<group>"; };
+		75AA18B02A14174100F6B580 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		75AA18B22A1424E600F6B580 /* RetentionDataSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetentionDataSettingsView.swift; sourceTree = "<group>"; };
+		75AA18B52A14273400F6B580 /* LaunchAtLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginView.swift; sourceTree = "<group>"; };
+		75AA18B72A14278900F6B580 /* SettingsShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsShortcutView.swift; sourceTree = "<group>"; };
+		75AA18B92A16B73800F6B580 /* HistoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowView.swift; sourceTree = "<group>"; };
 		75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75B1AEAE29BD1CDA00DA784E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		75B881BD297C1F7400048A2F /* PasteOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75B881BD297C1F7400048A2F /* Pasteon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pasteon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B881C0297C1F7400048A2F /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
 		75B881C2297C1F7400048A2F /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		75B881C4297C1F7600048A2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -211,14 +219,6 @@
 			path = LandingView;
 			sourceTree = "<group>";
 		};
-		753B5F9929C1037700BBADD7 /* SubscriptionManaging */ = {
-			isa = PBXGroup;
-			children = (
-				753B5F9A29C1038A00BBADD7 /* SubscriptionManaging.swift */,
-			);
-			path = SubscriptionManaging;
-			sourceTree = "<group>";
-		};
 		753B5F9C29C1179800BBADD7 /* PasteOnTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +274,24 @@
 			path = KeyboardShortcuts;
 			sourceTree = "<group>";
 		};
+		75AA18AE2A14170B00F6B580 /* Managing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managing;
+			sourceTree = "<group>";
+		};
+		75AA18AF2A14173500F6B580 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				75AA18B02A14174100F6B580 /* SettingsView.swift */,
+				75AA18B22A1424E600F6B580 /* RetentionDataSettingsView.swift */,
+				75AA18B52A14273400F6B580 /* LaunchAtLoginView.swift */,
+				75AA18B72A14278900F6B580 /* SettingsShortcutView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
 		75B1AEAD29BD1CD900DA784E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,7 +313,7 @@
 		75B881BE297C1F7400048A2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75B881BD297C1F7400048A2F /* PasteOn.app */,
+				75B881BD297C1F7400048A2F /* Pasteon.app */,
 				75FEFAC429AB64E800B7432C /* PasteOnTests.xctest */,
 			);
 			name = Products;
@@ -340,7 +358,6 @@
 				75FEFABD29AB5A3D00B7432C /* PasteboardManaging */,
 				751AF4CA2986EEE5007A3311 /* Preferences */,
 				751AF4E129871A33007A3311 /* PropertyWrappers */,
-				753B5F9929C1037700BBADD7 /* SubscriptionManaging */,
 				75B881D2297D6DB000048A2F /* Worker.swift */,
 			);
 			path = Sources;
@@ -371,6 +388,7 @@
 		75FA1C1429FFAA0B00ABE666 /* 🍀 2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				75AA18AE2A14170B00F6B580 /* Managing */,
 				75FA1C152A0028A400ABE666 /* Views */,
 				75FA1C0D29FF065E00ABE666 /* History */,
 				75FA1C1229FFA80800ABE666 /* Engine.swift */,
@@ -381,6 +399,7 @@
 		75FA1C152A0028A400ABE666 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				75AA18AF2A14173500F6B580 /* SettingsView */,
 				75FA1C2B2A0ED0D000ABE666 /* SearchTextField */,
 				75FA1C262A05933600ABE666 /* Filter */,
 				75FA1C212A05842A00ABE666 /* AppContainer */,
@@ -393,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				75FA1C162A0028C700ABE666 /* HistoryView.swift */,
+				75AA18B92A16B73800F6B580 /* HistoryRowView.swift */,
 				75FA1C1A2A0053DB00ABE666 /* HistoryView+Model.swift */,
 				75FA1C1F2A005BD600ABE666 /* RichPreview.swift */,
 			);
@@ -436,9 +456,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		75B881BC297C1F7400048A2F /* PasteOn */ = {
+		75B881BC297C1F7400048A2F /* Pasteon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "PasteOn" */;
+			buildConfigurationList = 75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "Pasteon" */;
 			buildPhases = (
 				75B881B9297C1F7400048A2F /* Sources */,
 				75B881BA297C1F7400048A2F /* Frameworks */,
@@ -449,7 +469,7 @@
 			);
 			dependencies = (
 			);
-			name = PasteOn;
+			name = Pasteon;
 			packageProductDependencies = (
 				75A935AE29AD46C600DB20ED /* KeyboardShortcuts */,
 				75B1AEA129BD1BEF00DA784E /* FirebaseAnalyticsSwift */,
@@ -459,7 +479,7 @@
 				753B5F9729C0F62000BBADD7 /* LaunchAtLogin */,
 			);
 			productName = Pasteboard;
-			productReference = 75B881BD297C1F7400048A2F /* PasteOn.app */;
+			productReference = 75B881BD297C1F7400048A2F /* Pasteon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		75FEFAC329AB64E800B7432C /* PasteOnTests */ = {
@@ -517,7 +537,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75B881BC297C1F7400048A2F /* PasteOn */,
+				75B881BC297C1F7400048A2F /* Pasteon */,
 				75FEFAC329AB64E800B7432C /* PasteOnTests */,
 			);
 		};
@@ -576,8 +596,10 @@
 				75FA1C0F29FF067100ABE666 /* History+Live.swift in Sources */,
 				751AF4E0298719EB007A3311 /* PreferencesView.ViewModel.swift in Sources */,
 				758EC8A0299805D7003562EC /* FloatingPanel.swift in Sources */,
+				75AA18BA2A16B73800F6B580 /* HistoryRowView.swift in Sources */,
 				751B99F929B29D95003A45C5 /* AnalyticsManaging.swift in Sources */,
 				751AF4CE2986EFC1007A3311 /* PreferencesView.swift in Sources */,
+				75AA18B62A14273400F6B580 /* LaunchAtLoginView.swift in Sources */,
 				75FA1C1329FFA80800ABE666 /* Engine.swift in Sources */,
 				751AF4CC2986EEF1007A3311 /* Preferences.swift in Sources */,
 				751AF4E329871A45007A3311 /* QuickStorage.swift in Sources */,
@@ -595,10 +617,12 @@
 				758EC8A429999A01003562EC /* PasteboardHistory.xcdatamodeld in Sources */,
 				75FA1C2D2A0ED1AB00ABE666 /* SearchTextField.swift in Sources */,
 				75FEFABF29AB5E7300B7432C /* PasteboardManaging+Mock.swift in Sources */,
+				75AA18B32A1424E600F6B580 /* RetentionDataSettingsView.swift in Sources */,
+				75AA18B12A14174100F6B580 /* SettingsView.swift in Sources */,
 				75B881C3297C1F7400048A2F /* Dashboard.swift in Sources */,
 				75FA1C1D2A00544100ABE666 /* Paste+Mock.swift in Sources */,
+				75AA18B82A14278900F6B580 /* SettingsShortcutView.swift in Sources */,
 				751B99EE29B2837E003A45C5 /* String+Extensions.swift in Sources */,
-				753B5F9B29C1038A00BBADD7 /* SubscriptionManaging.swift in Sources */,
 				75A935B229AD46E500DB20ED /* KeyboardShortcts+Name.swift in Sources */,
 				75FA1C282A05936100ABE666 /* Filter.swift in Sources */,
 				75B881D3297D6DB000048A2F /* Worker.swift in Sources */,
@@ -632,7 +656,7 @@
 /* Begin PBXTargetDependency section */
 		75FEFAC929AB64E800B7432C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75B881BC297C1F7400048A2F /* PasteOn */;
+			target = 75B881BC297C1F7400048A2F /* Pasteon */;
 			targetProxy = 75FEFAC829AB64E800B7432C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -760,7 +784,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PasteOn/Preview Content\"";
 				DEVELOPMENT_TEAM = GWVKCPM685;
@@ -792,7 +816,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"PasteOn/Preview Content\"";
 				DEVELOPMENT_TEAM = GWVKCPM685;
 				ENABLE_PREVIEWS = YES;
@@ -860,7 +884,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "PasteOn" */ = {
+		75B881CC297C1F7600048A2F /* Build configuration list for PBXNativeTarget "Pasteon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75B881CD297C1F7600048A2F /* Debug */,

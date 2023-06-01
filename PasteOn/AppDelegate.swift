@@ -10,44 +10,38 @@ import Combine
 import KeyboardShortcuts
 import SwiftUI
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
-    let worker: Worker
+    let engine = Engine(
+        history: .live(persistentContainerName: "PasteboardHistory"),
+        pasteboard: .live(pasteboard: .general, interval: 0.7, now: { .now })
+    )
+    let bundle = Bundle.main
+
     var cancellable: AnyCancellable?
     lazy var panel: FloatingPanel = {
-        let onDidPaste: () -> Void = { [weak self] in
+        let hideUi: () -> Void = { [weak self] in
             self?.panel.orderOut(nil)
         }
 
-        let dashbaord = Dashboard(
-            viewModel: .init(
-                worker: self.worker,
-                onDidPaste: onDidPaste,
-                analytics: self.analytics
-            )
+        let app = AppContainer(
+            model: .init(engine: self.engine, bundle: self.bundle, hideUi: hideUi)
         )
-        let contentView = dashbaord.edgesIgnoringSafeArea(.top)
 
         let _panel = FloatingPanel(contentRect: NSRect(x: 0, y: 0, width: 700, height: 600), backing: .buffered, defer: false)
-        _panel.title = "Floating Panel Title"
-        _panel.contentView = NSHostingView(rootView: contentView)
+        _panel.title = ""
+        _panel.contentView = NSHostingView(rootView: app)
         return _panel
     }()
 
     override init() {
-        let preferencesManaging = PreferencesManaging.live()
 
-        self.worker = .init(
-            historyManaging: .coreData(managing: .live(name: "PasteboardHistory"), preferencesManaging: preferencesManaging),
-            pasteboardManaging: .live(pasteboard: .general, interval: 1, now: { Date.now }),
-            preferences: preferencesManaging
-        )
         super.init()
 
-        defer { worker.start() }
+        engine.start()
 
         KeyboardShortcuts.onKeyUp(for: .pasteboard) { [weak self] in
-            self?.presentDashboard()
+            self?.showPanel()
         }
     }
     
@@ -93,13 +87,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc
     private func cleanHistory() {
-
-        worker.clear()
+        engine.history.wipe()
     }
 
     @objc
     private func openApp() {
-        presentDashboard()
+        showPanel()
     }
 
     lazy var staticMenuItems: [NSMenuItem] = [
@@ -109,7 +102,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "Q")
     ]
 
-    private func presentDashboard() {
+    private func showPanel() {
+
         // Center doesn't place it in the absolute center, see the documentation for more details
         panel.center()
         // Shows the panel and makes it active
@@ -120,7 +114,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension CGRect {
-
     var center: CGPoint {
         .init(x: width / 2, y: height / 2)
     }

@@ -10,10 +10,20 @@ import Combine
 
 struct PasteboardManaging {
 
+    let event: AnyPublisher<Event, Never>
+
     let value: AnyPublisher<Paste, Never>
     let start: () -> Void
     let stop: () -> Void
     let apply: (Paste) -> Void
+}
+
+extension PasteboardManaging {
+
+    enum Event {
+        case start, stop, apply
+    }
+
 }
 
 extension PasteboardManaging {
@@ -24,13 +34,17 @@ extension PasteboardManaging {
         now: @escaping () -> Date
     ) -> Self {
 
+        let eventSubj = PassthroughSubject<Event, Never>()
         let valueSubj = PassthroughSubject<Paste, Never>()
+
         var timer: Timer?
         var changeCount = pasteboard.changeCount
 
         return .init(
+            event: eventSubj.eraseToAnyPublisher(),
             value: valueSubj.eraseToAnyPublisher(),
             start: {
+                eventSubj.send(.start)
                 timer = Timer.scheduledTimer(
                     withTimeInterval: interval,
                     repeats: true
@@ -55,11 +69,13 @@ extension PasteboardManaging {
             stop: {
                 timer?.invalidate()
                 timer = nil
+                eventSubj.send(.stop)
             },
             apply: { paste in
 
                 pasteboard.clearContents()
                 paste.contents.forEach { pasteboard.setData($0.value, forType: $0.type) }
+                eventSubj.send(.apply)
             }
         )
     }

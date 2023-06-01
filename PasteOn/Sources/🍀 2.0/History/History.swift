@@ -18,12 +18,15 @@ struct History {
     var remove: (Paste) -> Void
 
     var update: (Paste) -> Void
+
+    var wipe: () -> Void
 }
 
 extension History {
     enum Update {
         case append([Paste])
         case remove([Paste.ID])
+        case removeAll
         case update([Paste])
     }
 }
