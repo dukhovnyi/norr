@@ -21,6 +21,14 @@ extension AnalyticsManaging {
         let params: [String: Any]?
 
         static let openPreferencesFromDashboard = Event(name: "open_preferences__from_dashboard", params: nil)
+
+        // Exclude app
+        static func addExcludedApp(bundleId: String) -> Event {
+            Event(name: "add_app_exclusion", params: ["bundleId": bundleId])
+        }
+        static func removeExcludedApp(bundleId: String) -> Event {
+            Event(name: "remove_app_exclusion", params: ["bundleId": bundleId])
+        }
     }
     
 }
@@ -36,7 +44,7 @@ extension AnalyticsManaging {
         AnalyticsManaging(
             appDidFinishLaunching: { _ in
 
-                UserDefaults.standard.register(
+                Foundation.UserDefaults.standard.register(
                   defaults: ["NSApplicationCrashOnExceptions" : true]
                 )
 

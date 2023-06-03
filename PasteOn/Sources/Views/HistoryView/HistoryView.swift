@@ -47,12 +47,20 @@ struct HistoryView: View {
                         model: .init(
                             item: item,
                             bolt: { [weak model] in model?.bolt(item: item) },
-                            remove: { [weak model] in model?.remove(item: item) }
+                            remove: { [weak model] in model?.remove(item: item) },
+                            ignoreBundleId: { [weak model] in
+                                if let bundleId = item.bundleId {
+                                    model?.excludeApp(bundleId: bundleId)
+                                }
+                            }
                         )
                     )
                     .contentShape(Rectangle())
                     .onTapGesture { [weak model] in
                         model?.apply(item: item)
+                    }
+                    .onDeleteCommand { [weak model] in
+                        model?.remove(item: item)
                     }
                 }
                 .focused($focusedField, equals: .items)
@@ -68,7 +76,7 @@ struct HistoryView_Previews: PreviewProvider {
 
     static var previews: some View {
         HistoryView(
-            model: .init(engine: .init(history: .previews(), pasteboard: .mock()))
+            model: .init(engine: .previews())
         )
     }
 }

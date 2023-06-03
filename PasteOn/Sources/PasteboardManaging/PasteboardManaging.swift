@@ -19,11 +19,9 @@ struct PasteboardManaging {
 }
 
 extension PasteboardManaging {
-
     enum Event {
         case start, stop, apply
     }
-
 }
 
 extension PasteboardManaging {
@@ -53,14 +51,14 @@ extension PasteboardManaging {
                     guard pasteboard.changeCount != changeCount else { return }
                     changeCount = pasteboard.changeCount
 
-                    let bundle = NSWorkspace.shared.frontmostApplication?.bundleURL
+                    let bundleId = NSWorkspace.shared.frontmostApplication?.bundleIdentifier
                     valueSubj.send(
                         .init(
                             id: .init(),
                             changeCount: changeCount,
                             createdAt: now(),
                             pasteboardItems: pasteboard.pasteboardItems ?? [],
-                            bundleUrl: bundle,
+                            bundleId: bundleId,
                             isBolted: false
                         )
                     )

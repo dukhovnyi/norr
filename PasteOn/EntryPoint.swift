@@ -15,7 +15,7 @@ struct EntryPoint: App {
     var body: some Scene {
 
         Settings {            
-            SettingsView(model: .init(wipe: delegate.engine.history.wipe))
+            SettingsView(model: .init(engine: delegate.engine))
         }
     }
 }

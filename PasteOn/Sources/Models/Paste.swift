@@ -19,7 +19,7 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
     /// Paste contents and representations.
     let contents: [Content]
 
-    let bundleUrl: URL?
+    let bundleId: String?
 
     var isBolted: Bool
 
@@ -28,14 +28,14 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
         changeCount: Int,
         createdAt: Date,
         contents: [Paste.Content],
-        bundleUrl: URL?,
+        bundleId: String?,
         isBolted: Bool
     ) {
         self.id = id
         self.changeCount = changeCount
         self.createdAt = createdAt
         self.contents = contents
-        self.bundleUrl = bundleUrl
+        self.bundleId = bundleId
         self.isBolted = isBolted
     }
 
@@ -44,7 +44,7 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
         changeCount: Int,
         createdAt: Date,
         pasteboardItems: [NSPasteboardItem],
-        bundleUrl: URL?,
+        bundleId: String?,
         isBolted: Bool
     ) {
         let contents = pasteboardItems
@@ -59,7 +59,7 @@ struct Paste: Equatable, Identifiable, Hashable, CustomStringConvertible {
             changeCount: changeCount,
             createdAt: createdAt,
             contents: contents,
-            bundleUrl: bundleUrl,
+            bundleId: bundleId,
             isBolted: isBolted
         )
     }

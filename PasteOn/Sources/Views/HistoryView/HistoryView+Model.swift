@@ -72,6 +72,10 @@ extension HistoryView {
             AudioServicesPlaySystemSound(kUserPreferredAlert)
         }
 
+        func excludeApp(bundleId: String) {
+            engine.excludeApps.add(bundleId)
+        }
+
         // MARK: - Private
 
         private var eventMonitorRef: Any?

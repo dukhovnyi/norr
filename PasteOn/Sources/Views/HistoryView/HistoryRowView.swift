@@ -28,25 +28,23 @@ struct HistoryRowView: View {
                         VStack {
                             Image(systemName: "bolt\(model.item.isBolted ? ".fill" : "")")
                                 .frame(width: 24, height: 24)
-                            Text("Bolt")
-                                .font(.footnote)
                         }
                     }
                 )
                 .ifCondition(model.item.isBolted) { $0.foregroundColor(.yellow) }
 
-                Button(
-                    role: .destructive,
-                    action: model.remove,
-                    label: {
-                        VStack {
-                            Image(systemName: "minus.circle")
-                                .frame(width: 24, height: 24)
-                            Text("Remove")
-                                .font(.footnote)
+                Menu(
+                    content: {
+                        if let bundleId = model.item.bundleId {
+                            Button("Ignore \(bundleId)", action: model.ignoreBundleId)
                         }
-                    }
+                        Button("Bolt", action: model.bolt)
+                        Button("Delete", action: model.remove)
+                    },
+                    label: {}
                 )
+                .menuStyle(.borderlessButton)
+
             }
         }
         .tag(model.item)
@@ -54,7 +52,9 @@ struct HistoryRowView: View {
     }
 
     @ViewBuilder func appIcon(item: Paste) -> some View {
-        if let path = item.bundleUrl?.path {
+        if let bundleId = item.bundleId,
+              let path = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleId)?.path {
+
             Image(nsImage: NSWorkspace.shared.icon(forFile: path))
                 .resizable()
                 .frame(width: 24, height: 24)
@@ -66,16 +66,17 @@ struct HistoryRowView: View {
 
 struct HistoryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryRowView(model: .init(item: .mockPlainText(), bolt: {}, remove: {}))
+        HistoryRowView(
+            model: .init(item: .mockPlainText(), bolt: {}, remove: {}, ignoreBundleId: {})
+        )
     }
 }
 
 extension HistoryRowView {
-
     struct Model {
         let item: Paste
         let bolt: () -> Void
         let remove: () -> Void
+        let ignoreBundleId: () -> Void
     }
-
 }

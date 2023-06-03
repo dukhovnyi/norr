@@ -115,7 +115,7 @@ private extension PasteModel {
             changeCount: Int(self.changeCount),
             createdAt: self.createdAt ?? .now,
             contents: mapToPasteContents(self.pasteContents ?? []),
-            bundleUrl: self.bundleURL,
+            bundleId: self.bundleId,
             isBolted: isBolted
         )
     }
@@ -130,4 +130,34 @@ private extension PasteModel {
             return .init(type: .init(rawType), value: item.data)
         }
     }
+}
+
+extension NSManagedObjectContext {
+
+    /// Converts `Paste` to `PasteModel` and add object to current context
+    ///
+    func addPaste(_ paste: Paste) {
+
+        let newItem = PasteModel(context: self)
+        newItem.createdAt = Date.now
+        newItem.id = paste.id
+        newItem.changeCount = Int64(paste.changeCount)
+        newItem.bundleId = paste.bundleId
+        paste.contents.forEach {
+            let content = PasteContentModel(context: self)
+            content.type = $0.type.rawValue
+            content.data = $0.value
+            newItem.addToPasteContents(content)
+        }
+    }
+}
+
+public extension NSManagedObject {
+
+    convenience init(context: NSManagedObjectContext) {
+        let name = String(describing: type(of: self))
+        let entity = NSEntityDescription.entity(forEntityName: name, in: context)!
+        self.init(entity: entity, insertInto: context)
+    }
+
 }

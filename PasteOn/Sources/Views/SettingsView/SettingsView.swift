@@ -23,6 +23,11 @@ struct SettingsView: View {
                     Label("Retention Data", systemImage: "folder.badge.gearshape")
                 }
                 .tag(Tabs.retentionData)
+            ExcludeAppsView(model: .init(excludeApps: model.engine.excludeApps))
+                .tabItem {
+                    Label("Exclude Apps", systemImage: "line.3.horizontal.decrease.circle")
+                }
+                .tag(Tabs.ignore)
         }
         .padding(20)
     }
@@ -31,15 +36,17 @@ struct SettingsView: View {
 extension SettingsView {
 
     private enum Tabs: Hashable {
-        case general, retentionData
+        case general, retentionData, ignore
     }
 
     final class Model: ObservableObject {
 
         let wipe: () -> Void
+        let engine: Engine
 
-        init(wipe: @escaping () -> Void) {
-            self.wipe = wipe
+        init(engine: Engine) {
+            self.wipe = engine.history.wipe
+            self.engine = engine
         }
     }
 }
@@ -61,6 +68,6 @@ struct GeneralSettingsView: View {
 
 struct PrefsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(model: .init(wipe: {}))
+        SettingsView(model: .init(engine: .previews()))
     }
 }

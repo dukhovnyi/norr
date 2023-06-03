@@ -1,14 +1,14 @@
 //
-//  QuickStorage.swift
-//  Pasteboard
+//  UserDefaults.swift
+//  Pasteon
 //
-//  Created by Yurii Dukhovnyi on 29.01.2023.
+//  Created by Yurii Dukhovnyi on 02.06.2023.
 //
 
 import Foundation
 
 @propertyWrapper
-struct QuickStorage<T: Codable> {
+struct UserDefaults<T: Codable> {
 
     var wrappedValue: T {
         get {
@@ -23,7 +23,7 @@ struct QuickStorage<T: Codable> {
     init(
         key: String,
         defaultValue: T,
-        userDefaults: UserDefaults = .standard
+        userDefaults: Foundation.UserDefaults = .standard
     ) {
         self.key = key
         self.defaultValue = defaultValue
@@ -34,7 +34,7 @@ struct QuickStorage<T: Codable> {
 
     private let key: String
     private let defaultValue: T
-    private let userDefaults: UserDefaults
+    private let userDefaults: Foundation.UserDefaults
 
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()

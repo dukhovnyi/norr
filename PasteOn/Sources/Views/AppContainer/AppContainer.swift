@@ -49,7 +49,11 @@ struct AppContainer: View {
 struct AppContainer_Previews: PreviewProvider {
     static var previews: some View {
         AppContainer(
-            model: .init(engine: .init(history: .previews(), pasteboard: .mock()), bundle: .main, hideUi: {})
+            model: .init(
+                engine: .previews(),
+                bundle: .main,
+                hideUi: {}
+            )
         )
     }
 }
