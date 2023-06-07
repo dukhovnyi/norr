@@ -18,9 +18,12 @@ extension Paste {
         case fileUrl(URL)
         case url(URL)
 
-        init(contents: [Paste.Content]) {
+        init(
+            contents: [Paste.Content],
+            allowRtf: Bool
+        ) {
 
-            if let rtfConetnt = Self.handleRtfContent(contents: contents) {
+            if let rtfConetnt = Self.handleRtfContent(contents: contents), allowRtf {
                 self = .richText(rtfConetnt)
             } else if let color = Self.handleColorContent(contents: contents) {
                 self = .color(color)
@@ -32,7 +35,11 @@ extension Paste {
                 self = .url(url)
             } else {
                 let stringContent = contents.first(where: { $0.type == .string })
-                self = .plainText(String(decoding: stringContent?.value ?? Data(), as: UTF8.self))
+                if let data = stringContent?.value {
+                    self = .plainText(String(decoding: data, as: UTF8.self))
+                } else {
+                    self = .plainText("* This object has no text representation *")
+                }
             }
         }
 

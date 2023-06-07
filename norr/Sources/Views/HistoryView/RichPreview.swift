@@ -72,7 +72,7 @@ extension RichPreview {
         @Published var preview: Paste.PreviewType
 
         init(paste: Paste) {
-            self.preview = .init(contents: paste.contents)
+            self.preview = .init(contents: paste.contents, allowRtf: false)
         }
     }
 }
