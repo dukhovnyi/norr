@@ -13,10 +13,11 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
     lazy var engine = Engine(
+        analytics: analytics,
+        excludeApps: .live(analytics: analytics),
         history: .live(persistentContainerName: "PasteboardHistory"),
         pasteboard: .live(pasteboard: .general, interval: 0.7, now: { .now }),
-        excludeApps: .live(analytics: analytics),
-        analytics: analytics
+        subscription: .live()
     )
     let bundle = Bundle.main
 

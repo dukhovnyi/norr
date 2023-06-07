@@ -1,0 +1,106 @@
+{
+  "identifier" : "FEA69231",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6446295795",
+    "_askToBuyEnabled" : true,
+    "_developerTeamID" : "GWVKCPM685",
+    "_lastSynchronizedDate" : 707863824.77337694,
+    "_storefront" : "EST"
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21349634",
+      "localizations" : [
+
+      ],
+      "name" : "Main",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "12.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6450009447",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access to all features for 1 year ",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "annual_pack",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual",
+          "subscriptionGroupID" : "21349634",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "6450010091",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access to all features for 1 month ",
+              "displayName" : "Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "monthly_plan_product",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly",
+          "subscriptionGroupID" : "21349634",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6450009840",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access to all features for 3 months ",
+              "displayName" : "Quarterly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "quarterly_plan",
+          "recurringSubscriptionPeriod" : "P3M",
+          "referenceName" : "Quarterly",
+          "subscriptionGroupID" : "21349634",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

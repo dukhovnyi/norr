@@ -11,21 +11,24 @@ import SwiftUI
 
 final class Engine {
 
+    let analytics: AnalyticsManaging
+    let excludeApps: ExcludeApps
     let history: History
     let pasteboard: PasteboardManaging
-    let excludeApps: ExcludeApps
-    let analytics: AnalyticsManaging
+    let subscription: Subscription
 
     init(
+        analytics: AnalyticsManaging,
+        excludeApps: ExcludeApps,
         history: History,
         pasteboard: PasteboardManaging,
-        excludeApps: ExcludeApps,
-        analytics: AnalyticsManaging
+        subscription: Subscription
     ) {
+        self.analytics = analytics
+        self.excludeApps = excludeApps
         self.history = history
         self.pasteboard = pasteboard
-        self.excludeApps = excludeApps
-        self.analytics = analytics
+        self.subscription = subscription
 
         scheduleHistoryCleanUp(nextRoundIn: 10)
     }
@@ -70,10 +73,11 @@ final class Engine {
 extension Engine {
     static func previews() -> Engine {
         .init(
+            analytics: .previews(),
+            excludeApps: .previews(),
             history: .previews(),
             pasteboard: .mock(),
-            excludeApps: .previews(),
-            analytics: .previews()
+            subscription: .previews()
         )
     }
 }

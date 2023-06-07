@@ -28,7 +28,13 @@ struct SettingsView: View {
                     Label("Exclude Apps", systemImage: "line.3.horizontal.decrease.circle")
                 }
                 .tag(Tabs.ignore)
+            SubscriptionView(model: .init(subscription: model.engine.subscription))
+                .tabItem {
+                    Label("Subscription", systemImage: "tag")
+                }
+                .tag(Tabs.subscription)
         }
+        .frame(width: 420)
         .padding(20)
     }
 }
@@ -36,7 +42,7 @@ struct SettingsView: View {
 extension SettingsView {
 
     private enum Tabs: Hashable {
-        case general, retentionData, ignore
+        case general, retentionData, ignore, subscription
     }
 
     final class Model: ObservableObject {
