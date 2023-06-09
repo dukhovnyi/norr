@@ -34,8 +34,7 @@ struct SettingsView: View {
                 }
                 .tag(Tabs.subscription)
         }
-        .frame(width: 420)
-        .padding(20)
+        .padding()
     }
 }
 

@@ -55,8 +55,7 @@ struct RetentionDataSettingsView: View {
                 label: { Text("Wipe data") }
             )
         }
-        .frame(width: 420)
-
+        .fixedSize()
     }
 }
 

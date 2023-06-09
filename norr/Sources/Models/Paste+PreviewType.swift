@@ -1,4 +1,3 @@
-//
 //  Paste+PreviewType.swift
 //  Pasteboard
 //
@@ -18,12 +17,8 @@ extension Paste {
         case fileUrl(URL)
         case url(URL)
 
-        init(
-            contents: [Paste.Content],
-            allowRtf: Bool
-        ) {
-
-            if let rtfConetnt = Self.handleRtfContent(contents: contents), allowRtf {
+        init(contents: [Paste.Content]) {
+            if let rtfConetnt = Self.handleRtfContent(contents: contents) {
                 self = .richText(rtfConetnt)
             } else if let color = Self.handleColorContent(contents: contents) {
                 self = .color(color)

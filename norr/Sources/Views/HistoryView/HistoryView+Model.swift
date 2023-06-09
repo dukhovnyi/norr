@@ -21,6 +21,7 @@ extension HistoryView {
         @Published var search = ""
         @Published var caseSensitiveFilter = false
 
+        @Published var premiumSubscription = false
         @Published var excludeApps = [ExcludeApps.App]()
 
         init(engine: Engine) {
@@ -56,6 +57,14 @@ extension HistoryView {
             }
 
             startEventMonitor()
+
+            engine.subscription
+                .purchasedProducts()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] ids in
+                    self?.premiumSubscription = !ids.isEmpty
+                }
+                .store(in: &cancellables)
         }
 
         deinit {
@@ -95,6 +104,7 @@ extension HistoryView {
         private var subsciprtion: AnyCancellable?
         private var searchSubsciprtion: AnyCancellable?
         private var excludeAppsSubsciprtion: AnyCancellable?
+        private var cancellables = Set<AnyCancellable>()
 
         private func startEventMonitor() {
 

@@ -14,7 +14,8 @@ extension SubscriptionView {
     final class Model: ObservableObject {
 
         @Published var products: [Product] = []
-
+        @Published var purchasedProductIds = Set<Product.ID>()
+        
         init(subscription: Subscription) {
             self.subscription = subscription
 
@@ -39,8 +40,6 @@ extension SubscriptionView {
         private var cancellable = Set<AnyCancellable>()
         private let subscription: Subscription
 
-        private var purchasedProductIds = [Product.ID]()
-
         private func fetchProducts() {
 
             subscription.products()
@@ -54,6 +53,7 @@ extension SubscriptionView {
 
         private func updatePurchased() {
             subscription.purchasedProducts()
+                .receive(on: DispatchQueue.main)
                 .sink { [weak self] ids in
                     self?.purchasedProductIds = ids
                 }

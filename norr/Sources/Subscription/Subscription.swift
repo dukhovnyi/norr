@@ -15,7 +15,7 @@ private let supportedProductIds = [
 
 struct Subscription {
     var products: () -> AnyPublisher<[Product], Never>
-    var purchasedProducts: () -> AnyPublisher<[Product.ID], Never>
+    var purchasedProducts: () -> AnyPublisher<Set<Product.ID>, Never>
     var purchase: (Product) -> Void
 }
 
@@ -34,7 +34,7 @@ extension Subscription {
 
     static func previews(
         prods: AnyPublisher<[Product], Never> = CurrentValueSubject<[Product], Never>([]).eraseToAnyPublisher(),
-        purchasedProducts: AnyPublisher<[Product.ID], Never> = CurrentValueSubject<[Product.ID], Never>([]).eraseToAnyPublisher()
+        purchasedProducts: AnyPublisher<Set<Product.ID>, Never> = CurrentValueSubject<Set<Product.ID>, Never>([]).eraseToAnyPublisher()
     ) -> Self {
         .init(
             products: { prods },
@@ -50,7 +50,7 @@ import StoreKit
 final class SubscriptionManager {
 
     var products: AnyPublisher<[Product], Never> { prodSubj.eraseToAnyPublisher() }
-    var purchasedProducts: AnyPublisher<[Product.ID], Never> { purchasedProductsSubj.eraseToAnyPublisher() }
+    var purchasedProducts: AnyPublisher<Set<Product.ID>, Never> { purchasedProductsSubj.eraseToAnyPublisher() }
 
     init() {
 
@@ -131,7 +131,7 @@ final class SubscriptionManager {
             // the revoked transaction.
             debugPrint("🔥 revocation date='\(revocationDate)'.")
             var newValue = purchasedProductsSubj.value
-            newValue.removeAll(where: { transaction.productID == $0 })
+            newValue.remove(transaction.productID)
             purchasedProductsSubj.send(newValue)
         } else if let expirationDate = transaction.expirationDate,
             expirationDate < Date() {
@@ -145,7 +145,7 @@ final class SubscriptionManager {
             // Provide access to the product identified by
             // transaction.productID.
             var newValue = purchasedProductsSubj.value
-            newValue.append(transaction.productID)
+            newValue.insert(transaction.productID)
             purchasedProductsSubj.send(newValue)
         }
     }
@@ -153,7 +153,7 @@ final class SubscriptionManager {
     // MARK: - Private
 
     private let prodSubj = CurrentValueSubject<[Product], Never>([])
-    private let purchasedProductsSubj = CurrentValueSubject<[Product.ID], Never>([])
+    private let purchasedProductsSubj = CurrentValueSubject<Set<Product.ID>, Never>([])
 
     private var productFetchUpdate: Task<Void, Never>?
     private var activeProductsUpdate: Task<Void, Never>?

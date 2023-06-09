@@ -15,24 +15,24 @@ struct SubscriptionView: View {
     var body: some View {
         VStack(spacing: 16) {
             Text("Upgrade to Norr Premium today and take your pasteboard management to the next level.")
-                .font(.headline)
-            HStack {
-                ItemView(title: "Basic", description: "", amount: "Free", active: model.isFree())
+                .fixedSize(horizontal: true, vertical: false)
 
-                ForEach(model.products) { product in
-                    ItemView(
-                        title: product.displayName,
-                        description: product.description,
-                        amount: product.displayPrice,
-                        active: model.isActive(product: product)
-                    )
-                    .onTapGesture {
-                        model.purchase(product)
+                HStack {
+                    ItemView(title: "Basic", description: "", amount: "Free", active: model.isFree())
+
+                    ForEach(model.products) { product in
+                        ItemView(
+                            title: product.nameOrPeriod,
+                            description: product.description,
+                            amount: product.displayPrice,
+                            active: model.isActive(product: product)
+                        )
+                        .onTapGesture {
+                            model.purchase(product)
+                        }
                     }
-                }
             }
         }
-        .padding()
     }
 }
 
@@ -65,6 +65,24 @@ extension SubscriptionView {
             }
             .cornerRadius(13)
         }
+    }
+}
+
+extension Product {
+
+    var nameOrPeriod: String {
+
+        if !displayName.isEmpty {
+            return displayName
+        }
+        if let subscription {
+            return [
+                "\(subscription.subscriptionPeriod.value)",
+                "\(subscription.subscriptionPeriod.unit.localizedDescription)"
+            ].joined(separator: " ")
+        }
+
+        return ""
     }
 }
 

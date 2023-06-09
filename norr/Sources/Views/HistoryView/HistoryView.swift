@@ -48,6 +48,7 @@ struct HistoryView: View {
                 List(model.items.lazy.filter(model.searchState()), selection: $model.selected) { item in
 
                     HistoryRowView(
+                        premiumSubscription: model.premiumSubscription,
                         model: .init(
                             item: item,
                             bolt: { [weak model] in model?.bolt(item: item) },

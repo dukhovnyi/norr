@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoryRowView: View {
 
+    let premiumSubscription: Bool
     let model: Model
 
     var body: some View {
@@ -24,7 +25,11 @@ struct HistoryRowView: View {
 
             Divider()
 
-            RichPreview(model: .init(paste: model.item))
+            if premiumSubscription {
+                RichPreview(model: .init(paste: model.item))
+            } else {
+                TextPreview(model: .init(paste: model.item))
+            }
 
             Divider()
 
@@ -75,6 +80,7 @@ struct HistoryRowView: View {
 struct HistoryRowView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryRowView(
+            premiumSubscription: true,
             model: .init(
                 item: .mockPlainText(),
                 bolt: {},
