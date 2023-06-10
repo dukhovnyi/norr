@@ -32,6 +32,9 @@ struct SubscriptionView: View {
                         }
                     }
             }
+
+            Text("By subscribing to Norr Premium you agree to the [Terms of Use](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) and [Privacy Policy](https://dukhovnyi.com/norr/privacy-policy.txt)")
+                .padding()
         }
     }
 }
