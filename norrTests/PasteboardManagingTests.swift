@@ -35,6 +35,10 @@ final class PasteboardManagingTests: XCTestCase {
         )
     }
 
+    override func tearDown() {
+        cancellables.removeAll()
+    }
+
     func test__start() {
 
         impl.start()
