@@ -22,12 +22,16 @@ final class AppExclusionTests: XCTestCase {
         bundleIdB: "com.test.bundle.id.b"
     )
 
-    override func setUpWithError() throws {
+    override func setUp() {
 
         storage = .init()
         appExclusion = .init(quickStorage: storage)
 
-        try super.setUpWithError()
+      super.setUp()
+    }
+
+    override func tearDown() {
+        cancellables.removeAll()
     }
 
     func test__addExclusion() {

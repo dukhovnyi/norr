@@ -31,7 +31,6 @@
 		753B5F9829C0F62000BBADD7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 753B5F9729C0F62000BBADD7 /* LaunchAtLogin */; };
 		7544CB0C2B32308A00A6462E /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544CB0B2B32308A00A6462E /* EventMonitor.swift */; };
 		756226542AC2E87200BA5463 /* SubscriptionDiffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756226532AC2E87200BA5463 /* SubscriptionDiffView.swift */; };
-		75693FB82B4F4A5F0042A237 /* PasteboardManagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75693FB72B4F4A5F0042A237 /* PasteboardManagingTests.swift */; };
 		757634F52B1692B00080517C /* AppMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757634F42B1692B00080517C /* AppMenu.swift */; };
 		757634F72B16A4CF0080517C /* CGKeyCode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757634F62B16A4CF0080517C /* CGKeyCode+Extensions.swift */; };
 		757C8C932B20E25700C08621 /* ItemInfoView+ImgSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C922B20E25700C08621 /* ItemInfoView+ImgSection.swift */; };
@@ -39,6 +38,7 @@
 		757C8C972B22230800C08621 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C962B22230800C08621 /* Data+Extensions.swift */; };
 		757C8C992B223A8300C08621 /* ItemInfoView+FileUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C982B223A8300C08621 /* ItemInfoView+FileUrl.swift */; };
 		757C8C9B2B223D2500C08621 /* ItemInfoView+TextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C9A2B223D2500C08621 /* ItemInfoView+TextSection.swift */; };
+		7580D3F12B4FE27A003C890F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7580D3F02B4FE27A003C890F /* GoogleService-Info.plist */; };
 		75859CB92ABB86A000D8EE42 /* PasteboardManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75859CB82ABB86A000D8EE42 /* PasteboardManaging.swift */; };
 		75859CBB2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75859CBA2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift */; };
 		75859CBD2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75859CBC2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift */; };
@@ -52,7 +52,6 @@
 		758EC8A429999A01003562EC /* PasteboardHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 758EC8A229999A01003562EC /* PasteboardHistory.xcdatamodeld */; };
 		75987C9D2B1E76AB004692C5 /* ItemPreviewView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75987C9C2B1E76AB004692C5 /* ItemPreviewView+Color.swift */; };
 		75987CA02B20B235004692C5 /* PopupContainerView+FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75987C9F2B20B235004692C5 /* PopupContainerView+FooterView.swift */; };
-		7599187D2AC7673300DD2498 /* AppExclusionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599187C2AC7673300DD2498 /* AppExclusionControllerTests.swift */; };
 		75A935AF29AD46C600DB20ED /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 75A935AE29AD46C600DB20ED /* KeyboardShortcuts */; };
 		75AA18B12A14174100F6B580 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B02A14174100F6B580 /* SettingsView.swift */; };
 		75AA18B62A14273400F6B580 /* LaunchAtLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AA18B52A14273400F6B580 /* LaunchAtLoginView.swift */; };
@@ -67,12 +66,13 @@
 		75AFA9C92B092F3A0023CCAE /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA9C82B092F3A0023CCAE /* VisualEffect.swift */; };
 		75AFA9CC2B0937300023CCAE /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA9CB2B0937300023CCAE /* ItemInfoView.swift */; };
 		75AFA9CE2B093A840023CCAE /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA9CD2B093A840023CCAE /* AppIcon.swift */; };
-		75B1AE9F29BD1ADA00DA784E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */; };
 		75B1AEA229BD1BEF00DA784E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA129BD1BEF00DA784E /* FirebaseAnalyticsSwift */; };
 		75B1AEA429BD1BEF00DA784E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA329BD1BEF00DA784E /* FirebaseCrashlytics */; };
 		75B1AEA629BD1BEF00DA784E /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA529BD1BEF00DA784E /* FirebaseDynamicLinks */; };
 		75B1AEAC29BD1BEF00DA784E /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEAB29BD1BEF00DA784E /* FirebaseRemoteConfigSwift */; };
 		75B1AEAF29BD1CDA00DA784E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75B1AEAE29BD1CDA00DA784E /* AdSupport.framework */; };
+		75B1E5B62B4F6B2A001BA6DC /* PasteboardManagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75693FB72B4F4A5F0042A237 /* PasteboardManagingTests.swift */; };
+		75B1E5B72B4F6B2E001BA6DC /* AppExclusionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7599187C2AC7673300DD2498 /* AppExclusionControllerTests.swift */; };
 		75B881C1297C1F7400048A2F /* NorrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B881C0297C1F7400048A2F /* NorrApp.swift */; };
 		75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B881C4297C1F7600048A2F /* Assets.xcassets */; };
 		75B881C8297C1F7600048A2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B881C7297C1F7600048A2F /* Preview Assets.xcassets */; };
@@ -124,6 +124,9 @@
 		757C8C962B22230800C08621 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		757C8C982B223A8300C08621 /* ItemInfoView+FileUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemInfoView+FileUrl.swift"; sourceTree = "<group>"; };
 		757C8C9A2B223D2500C08621 /* ItemInfoView+TextSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemInfoView+TextSection.swift"; sourceTree = "<group>"; };
+		7580D3ED2B4F6F1D003C890F /* norrTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = norrTests.xctestplan; path = norrTests/norrTests.xctestplan; sourceTree = "<group>"; };
+		7580D3EE2B4FD107003C890F /* norrDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = norrDebug.entitlements; sourceTree = "<group>"; };
+		7580D3F02B4FE27A003C890F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75859CB82ABB86A000D8EE42 /* PasteboardManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManaging.swift; sourceTree = "<group>"; };
 		75859CBA2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Interface.swift"; sourceTree = "<group>"; };
 		75859CBC2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Impl.swift"; sourceTree = "<group>"; };
@@ -152,7 +155,6 @@
 		75AFA9C82B092F3A0023CCAE /* VisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
 		75AFA9CB2B0937300023CCAE /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 		75AFA9CD2B093A840023CCAE /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
-		75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75B1AEAE29BD1CDA00DA784E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		75B881BD297C1F7400048A2F /* norr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B881C0297C1F7400048A2F /* NorrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorrApp.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		75B881B4297C1F7400048A2F = {
 			isa = PBXGroup;
 			children = (
+				7580D3ED2B4F6F1D003C890F /* norrTests.xctestplan */,
 				75B881BF297C1F7400048A2F /* norr */,
 				75AB0D4A2AC2EB4700625B22 /* norrTests */,
 				75B881BE297C1F7400048A2F /* Products */,
@@ -383,8 +386,9 @@
 		75B881BF297C1F7400048A2F /* norr */ = {
 			isa = PBXGroup;
 			children = (
-				75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */,
+				7580D3EE2B4FD107003C890F /* norrDebug.entitlements */,
 				75B881D8297DDD8700048A2F /* Info.plist */,
+				7580D3F02B4FE27A003C890F /* GoogleService-Info.plist */,
 				75B881CF297C7B8900048A2F /* Sources */,
 				75B881D6297DCD6500048A2F /* AppDelegate.swift */,
 				75B881C0297C1F7400048A2F /* NorrApp.swift */,
@@ -536,7 +540,7 @@
 			files = (
 				75B881C8297C1F7600048A2F /* Preview Assets.xcassets in Resources */,
 				75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */,
-				75B1AE9F29BD1ADA00DA784E /* GoogleService-Info.plist in Resources */,
+				7580D3F12B4FE27A003C890F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,8 +574,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7599187D2AC7673300DD2498 /* AppExclusionControllerTests.swift in Sources */,
-				75693FB82B4F4A5F0042A237 /* PasteboardManagingTests.swift in Sources */,
+				75B1E5B62B4F6B2A001BA6DC /* PasteboardManagingTests.swift in Sources */,
+				75B1E5B72B4F6B2E001BA6DC /* AppExclusionControllerTests.swift in Sources */,
 				75AB0D4C2AC2EB4700625B22 /* PasteboardInstanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,17 +663,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GWVKCPM685;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.norrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -682,17 +689,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GWVKCPM685;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.norrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/norr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/norr";
@@ -749,7 +759,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -803,7 +813,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -817,14 +827,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = norr/norr.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = norr/norrDebug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 40;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"norr/Preview Content\"";
-				DEVELOPMENT_TEAM = GWVKCPM685;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = norr/Info.plist;
@@ -839,6 +850,7 @@
 				MARKETING_VERSION = 3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.Pasteboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -850,6 +862,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = norr/norr.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -870,6 +883,7 @@
 				MARKETING_VERSION = 3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dukhovnyi.Pasteboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "9400755E-E7B1-49D3-AC41-C065DAD2C836",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:norr.xcodeproj",
+        "identifier" : "75AB0D482AC2EB4700625B22",
+        "name" : "norrTests"
+      }
+    }
+  ],
+  "version" : 1
+}
