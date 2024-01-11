@@ -15,9 +15,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Xcode Select Version
+        uses: mobiledevops/xcode-select-version-action@v1
+        with:
+          xcode-select-version: 15.1
       - name: Run tests
         run: |
-          xcodebuild test -project norr.xcodeproj -scheme norr -resultBundlePath NorrResults -allowProvisioningUpdates
+          xcodebuild test -project norr.xcodeproj -scheme norr -resultBundlePath NorrResults
 
       - uses: kishikawakatsumi/xcresulttool@v1
         with:

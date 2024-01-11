@@ -38,6 +38,7 @@
 		757C8C972B22230800C08621 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C962B22230800C08621 /* Data+Extensions.swift */; };
 		757C8C992B223A8300C08621 /* ItemInfoView+FileUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C982B223A8300C08621 /* ItemInfoView+FileUrl.swift */; };
 		757C8C9B2B223D2500C08621 /* ItemInfoView+TextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C8C9A2B223D2500C08621 /* ItemInfoView+TextSection.swift */; };
+		7580D3F12B4FE27A003C890F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7580D3F02B4FE27A003C890F /* GoogleService-Info.plist */; };
 		75859CB92ABB86A000D8EE42 /* PasteboardManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75859CB82ABB86A000D8EE42 /* PasteboardManaging.swift */; };
 		75859CBB2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75859CBA2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift */; };
 		75859CBD2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75859CBC2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift */; };
@@ -125,6 +126,7 @@
 		757C8C9A2B223D2500C08621 /* ItemInfoView+TextSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemInfoView+TextSection.swift"; sourceTree = "<group>"; };
 		7580D3ED2B4F6F1D003C890F /* norrTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = norrTests.xctestplan; path = norrTests/norrTests.xctestplan; sourceTree = "<group>"; };
 		7580D3EE2B4FD107003C890F /* norrDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = norrDebug.entitlements; sourceTree = "<group>"; };
+		7580D3F02B4FE27A003C890F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75859CB82ABB86A000D8EE42 /* PasteboardManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManaging.swift; sourceTree = "<group>"; };
 		75859CBA2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Interface.swift"; sourceTree = "<group>"; };
 		75859CBC2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Impl.swift"; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			children = (
 				7580D3EE2B4FD107003C890F /* norrDebug.entitlements */,
 				75B881D8297DDD8700048A2F /* Info.plist */,
+				7580D3F02B4FE27A003C890F /* GoogleService-Info.plist */,
 				75B881CF297C7B8900048A2F /* Sources */,
 				75B881D6297DCD6500048A2F /* AppDelegate.swift */,
 				75B881C0297C1F7400048A2F /* NorrApp.swift */,
@@ -537,6 +540,7 @@
 			files = (
 				75B881C8297C1F7600048A2F /* Preview Assets.xcassets in Resources */,
 				75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */,
+				7580D3F12B4FE27A003C890F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
