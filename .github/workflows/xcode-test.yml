@@ -3,6 +3,9 @@
 
 name: Swift
 
+permissions:
+  checks: write
+
 on:
   push:
     branches: ["main"]
