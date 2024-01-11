@@ -125,6 +125,7 @@
 		757C8C982B223A8300C08621 /* ItemInfoView+FileUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemInfoView+FileUrl.swift"; sourceTree = "<group>"; };
 		757C8C9A2B223D2500C08621 /* ItemInfoView+TextSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemInfoView+TextSection.swift"; sourceTree = "<group>"; };
 		7580D3ED2B4F6F1D003C890F /* norrTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = norrTests.xctestplan; path = norrTests/norrTests.xctestplan; sourceTree = "<group>"; };
+		7580D3EE2B4FD107003C890F /* norrDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = norrDebug.entitlements; sourceTree = "<group>"; };
 		75859CB82ABB86A000D8EE42 /* PasteboardManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManaging.swift; sourceTree = "<group>"; };
 		75859CBA2ABB8D0900D8EE42 /* PasteboardManaging+Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Interface.swift"; sourceTree = "<group>"; };
 		75859CBC2ABB8D2500D8EE42 /* PasteboardManaging+Impl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardManaging+Impl.swift"; sourceTree = "<group>"; };
@@ -385,6 +386,7 @@
 		75B881BF297C1F7400048A2F /* norr */ = {
 			isa = PBXGroup;
 			children = (
+				7580D3EE2B4FD107003C890F /* norrDebug.entitlements */,
 				75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */,
 				75B881D8297DDD8700048A2F /* Info.plist */,
 				75B881CF297C7B8900048A2F /* Sources */,
@@ -663,7 +665,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -689,7 +691,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -825,14 +827,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = norr/norr.entitlements;
+				CODE_SIGN_ENTITLEMENTS = norr/norrDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 40;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"norr/Preview Content\"";
-				DEVELOPMENT_TEAM = GWVKCPM685;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = norr/Info.plist;
