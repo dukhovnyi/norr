@@ -65,7 +65,6 @@
 		75AFA9C92B092F3A0023CCAE /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA9C82B092F3A0023CCAE /* VisualEffect.swift */; };
 		75AFA9CC2B0937300023CCAE /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA9CB2B0937300023CCAE /* ItemInfoView.swift */; };
 		75AFA9CE2B093A840023CCAE /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA9CD2B093A840023CCAE /* AppIcon.swift */; };
-		75B1AE9F29BD1ADA00DA784E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */; };
 		75B1AEA229BD1BEF00DA784E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA129BD1BEF00DA784E /* FirebaseAnalyticsSwift */; };
 		75B1AEA429BD1BEF00DA784E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA329BD1BEF00DA784E /* FirebaseCrashlytics */; };
 		75B1AEA629BD1BEF00DA784E /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 75B1AEA529BD1BEF00DA784E /* FirebaseDynamicLinks */; };
@@ -154,7 +153,6 @@
 		75AFA9C82B092F3A0023CCAE /* VisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
 		75AFA9CB2B0937300023CCAE /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 		75AFA9CD2B093A840023CCAE /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
-		75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75B1AEAE29BD1CDA00DA784E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		75B881BD297C1F7400048A2F /* norr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B881C0297C1F7400048A2F /* NorrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorrApp.swift; sourceTree = "<group>"; };
@@ -387,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				7580D3EE2B4FD107003C890F /* norrDebug.entitlements */,
-				75B1AE9E29BD1ADA00DA784E /* GoogleService-Info.plist */,
 				75B881D8297DDD8700048A2F /* Info.plist */,
 				75B881CF297C7B8900048A2F /* Sources */,
 				75B881D6297DCD6500048A2F /* AppDelegate.swift */,
@@ -540,7 +537,6 @@
 			files = (
 				75B881C8297C1F7600048A2F /* Preview Assets.xcassets in Resources */,
 				75B881C5297C1F7600048A2F /* Assets.xcassets in Resources */,
-				75B1AE9F29BD1ADA00DA784E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
